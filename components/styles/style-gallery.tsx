@@ -28,7 +28,8 @@ export function StyleGallery() {
             Design Style Gallery
           </h2>
           <p className="mt-2 max-w-3xl text-slate-700">
-            Nine common visual approaches with guidance on when to use each one.
+            Twelve common visual approaches with guidance on when to use each
+            one.
             <span className="ml-1 text-sm text-slate-600">
               Click a style to apply it to the entire page.
             </span>

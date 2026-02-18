@@ -18,7 +18,10 @@ export type DesignStyle =
   | "style-data"
   | "style-pixel"
   | "style-bauhaus"
-  | "style-utilitarian";
+  | "style-utilitarian"
+  | "style-rebus"
+  | "style-popart"
+  | "style-memphis";
 
 const ALL_STYLES: DesignStyle[] = [
   "style-flat",
@@ -30,6 +33,9 @@ const ALL_STYLES: DesignStyle[] = [
   "style-pixel",
   "style-bauhaus",
   "style-utilitarian",
+  "style-rebus",
+  "style-popart",
+  "style-memphis",
 ];
 
 type DesignStyleContextValue = {

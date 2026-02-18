@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowLeft, Palette } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Palette } from "lucide-react";
 
 import {
   styleShowcases,
   type StyleVisualClass,
 } from "@/components/styles/design-style-showcases";
+import { getStyleHref } from "@/components/styles/style-profiles";
 import { StyleMiniPreview } from "@/components/styles/style-mini-preview";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -134,9 +135,14 @@ export default function StylesPage() {
 
       <section className="reveal-up-delay mt-12">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-          <h2 className="font-display text-3xl text-slate-900">
-            Style Cards + Live Examples
-          </h2>
+          <div>
+            <h2 className="font-display text-3xl text-slate-900">
+              Style Cards + Live Examples
+            </h2>
+            <p className="mt-1 text-sm text-slate-600">
+              Click a card to open its dedicated style brief.
+            </p>
+          </div>
           <Badge variant="warning" className="flex items-center gap-1.5">
             <Palette className="h-3.5 w-3.5" />
             Match style to user goals
@@ -145,47 +151,56 @@ export default function StylesPage() {
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {styleShowcases.map((style) => (
-            <Card
+            <Link
               key={style.name}
-              className={`style-panel style-card border-none ${style.visualClass}`}
+              href={getStyleHref(style.visualClass)}
+              className="block h-full"
             >
-              <CardHeader className="space-y-2">
-                <CardTitle className="text-2xl text-slate-900">
-                  {style.name}
-                </CardTitle>
-                <CardDescription className="text-slate-700">
-                  {style.tone}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4 text-sm text-slate-800">
-                <p>{style.summary}</p>
-                <p>
-                  <span className="font-semibold">Best for:</span>{" "}
-                  {style.idealFor}
-                </p>
-                <p>
-                  <span className="font-semibold">Watch out:</span>{" "}
-                  {style.caution}
-                </p>
-                <div className="rounded-lg border border-slate-300/60 bg-white/45 p-3">
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-700">
-                    {style.exampleContext}
+              <Card
+                className={`style-panel style-card flex h-full flex-col border-none ${style.visualClass}`}
+              >
+                <CardHeader className="space-y-2">
+                  <CardTitle className="text-2xl text-slate-900">
+                    {style.name}
+                  </CardTitle>
+                  <CardDescription className="text-slate-700">
+                    {style.tone}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex h-full flex-col gap-4 text-sm text-slate-800">
+                  <p>{style.summary}</p>
+                  <p>
+                    <span className="font-semibold">Best for:</span>{" "}
+                    {style.idealFor}
                   </p>
-                  <StyleMiniPreview visualClass={style.visualClass} />
-                </div>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {style.components.map((component) => (
-                    <Badge
-                      key={component}
-                      variant="outline"
-                      className="bg-white/40"
-                    >
-                      {component}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  <p>
+                    <span className="font-semibold">Watch out:</span>{" "}
+                    {style.caution}
+                  </p>
+                  <div className="rounded-lg border border-slate-300/60 bg-white/45 p-3">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-700">
+                      {style.exampleContext}
+                    </p>
+                    <StyleMiniPreview visualClass={style.visualClass} />
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-1">
+                    {style.components.map((component) => (
+                      <Badge
+                        key={component}
+                        variant="outline"
+                        className="bg-white/40"
+                      >
+                        {component}
+                      </Badge>
+                    ))}
+                  </div>
+                  <p className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-primary">
+                    Open style brief
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>

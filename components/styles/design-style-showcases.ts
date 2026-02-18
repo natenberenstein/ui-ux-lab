@@ -7,7 +7,10 @@ export type StyleVisualClass =
   | "style-data"
   | "style-pixel"
   | "style-bauhaus"
-  | "style-utilitarian";
+  | "style-utilitarian"
+  | "style-rebus"
+  | "style-popart"
+  | "style-memphis";
 
 export type StyleShowcase = {
   name: string;
@@ -113,5 +116,39 @@ export const styleShowcases: StyleShowcase[] = [
     caution: "Can feel austere without clear hierarchy and spacing.",
     components: ["Dense tables", "Direct labels", "No-frills controls"],
     exampleContext: "Example: ops ticket triage board",
+  },
+  {
+    name: "Rebus",
+    tone: "Symbolic and puzzle-like",
+    visualClass: "style-rebus",
+    summary:
+      "Builds visual language from icon fragments, symbols, and coded motifs.",
+    idealFor:
+      "Narrative microsites, interactive explainers, and branded learning flows.",
+    caution: "Overuse of symbolism can hurt immediate readability.",
+    components: ["Glyph tiles", "Icon ladders", "Puzzle clusters"],
+    exampleContext: "Example: interactive clueboard interface",
+  },
+  {
+    name: "Pop Art",
+    tone: "Comic-book and explosive",
+    visualClass: "style-popart",
+    summary:
+      "Uses halftone fields, loud color collisions, and heavy ink-like borders.",
+    idealFor: "Campaign launches, event pages, and high-energy showcases.",
+    caution: "High contrast can fatigue users in long-form experiences.",
+    components: ["Speech-bubble chips", "Burst cards", "Punch outlines"],
+    exampleContext: "Example: launch countdown control center",
+  },
+  {
+    name: "Memphis",
+    tone: "Playful and maximalist",
+    visualClass: "style-memphis",
+    summary:
+      "Mixes geometric confetti, zigzags, and saturated accents in layered blocks.",
+    idealFor: "Creative studios, youth products, and expressive brand hubs.",
+    caution: "Needs careful hierarchy so decoration does not obscure actions.",
+    components: ["Pattern planes", "Geometric badges", "Color-stacked cards"],
+    exampleContext: "Example: creative studio dashboard",
   },
 ];

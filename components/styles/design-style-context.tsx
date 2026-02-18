@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 export type DesignStyle =
   | "default"
@@ -9,7 +15,10 @@ export type DesignStyle =
   | "style-neobrutal"
   | "style-editorial"
   | "style-bento"
-  | "style-data";
+  | "style-data"
+  | "style-pixel"
+  | "style-bauhaus"
+  | "style-utilitarian";
 
 const ALL_STYLES: DesignStyle[] = [
   "style-flat",
@@ -17,7 +26,10 @@ const ALL_STYLES: DesignStyle[] = [
   "style-neobrutal",
   "style-editorial",
   "style-bento",
-  "style-data"
+  "style-data",
+  "style-pixel",
+  "style-bauhaus",
+  "style-utilitarian",
 ];
 
 type DesignStyleContextValue = {
@@ -27,7 +39,7 @@ type DesignStyleContextValue = {
 
 const DesignStyleContext = createContext<DesignStyleContextValue>({
   activeStyle: "default",
-  setActiveStyle: () => {}
+  setActiveStyle: () => {},
 });
 
 export function useDesignStyle() {

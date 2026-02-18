@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
-import { DesignStyleProvider } from "@/components/design-style-context";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { DesignStyleProvider } from "@/components/styles/design-style-context";
+import { MotionPreferenceToggle } from "@/components/settings/motion-preference-toggle";
+import { ThemeToggle } from "@/components/settings/theme-toggle";
 
 import "./globals.css";
 
@@ -22,6 +23,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
                 const isDark = stored ? stored === "dark" : prefersDark;
                 document.documentElement.classList.toggle("dark", isDark);
+
+                const motionPreference = localStorage.getItem("motionPreference");
+                document.documentElement.classList.toggle("motion-reduce-sim", motionPreference === "reduced");
+
                 const style = localStorage.getItem("designStyle");
                 if (style) document.body.classList.add(style);
               } catch {}
@@ -32,6 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-screen bg-background font-sans text-foreground">
         <DesignStyleProvider>
           <ThemeToggle />
+          <MotionPreferenceToggle />
           {children}
         </DesignStyleProvider>
       </body>

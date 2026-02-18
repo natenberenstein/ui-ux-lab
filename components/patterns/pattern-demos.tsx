@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   Info
 } from "lucide-react";
+import { datavizDemos } from "@/components/patterns/dataviz-demos";
 
 type DemoComponent = () => React.JSX.Element;
 
@@ -719,5 +720,6 @@ export const patternDemos: Record<string, DemoComponent> = {
   "empty-states": EmptyStatesDemo,
   "error-recovery": ErrorRecoveryDemo,
   "skeleton-screens": SkeletonScreensDemo,
-  "optimistic-ui": OptimisticUiDemo
+  "optimistic-ui": OptimisticUiDemo,
+  ...datavizDemos
 };

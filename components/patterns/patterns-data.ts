@@ -5,10 +5,11 @@ import {
   Type,
   Grid3x3,
   FormInput,
-  Loader2
+  Loader2,
+  BarChart2
 } from "lucide-react";
 
-export type PatternCategory = "motion" | "color" | "typography" | "spacing" | "forms" | "states";
+export type PatternCategory = "motion" | "color" | "typography" | "spacing" | "forms" | "states" | "dataviz";
 
 export type SubConcept = {
   name: string;
@@ -32,7 +33,8 @@ export const categoryLabels: Record<PatternCategory, string> = {
   typography: "Typography",
   spacing: "Spacing",
   forms: "Forms",
-  states: "States"
+  states: "States",
+  dataviz: "Data Viz"
 };
 
 export const categoryOrder: PatternCategory[] = [
@@ -41,7 +43,8 @@ export const categoryOrder: PatternCategory[] = [
   "typography",
   "spacing",
   "forms",
-  "states"
+  "states",
+  "dataviz"
 ];
 
 export const categoryPaths: Record<PatternCategory, string> = {
@@ -50,7 +53,8 @@ export const categoryPaths: Record<PatternCategory, string> = {
   typography: "/patterns/typography",
   spacing: "/patterns/spacing",
   forms: "/patterns/forms",
-  states: "/patterns/states"
+  states: "/patterns/states",
+  dataviz: "/patterns/dataviz"
 };
 
 export const patternTopics: PatternTopic[] = [
@@ -243,6 +247,66 @@ export const patternTopics: PatternTopic[] = [
         description:
           "Breaking long forms into steps reduces cognitive load and provides progress feedback. Each step should have a clear scope and Back/Next navigation.",
         demoKey: "multi-step-forms"
+      }
+    ]
+  },
+  {
+    title: "Data Visualization Principles",
+    icon: BarChart2,
+    category: "dataviz",
+    oneLiner: "Honest, accessible charts communicate data — not designer intent.",
+    description:
+      "Charts are translators between raw numbers and human understanding. Every decision — chart type, color palette, axis range, label placement — can reveal or obscure truth. Good data visualization picks the right encoding for the data type, eliminates non-data ink, labels axes clearly, and ensures the design works without color alone.",
+    keyTakeaway:
+      "Choose chart type based on what relationship you're showing, keep the data-ink ratio high, start axes at zero by default, and always provide redundant encoding beyond color alone.",
+    subConcepts: [
+      {
+        name: "Chart Type Selection",
+        description:
+          "Bar charts compare categories; line charts show trends; area charts emphasise magnitude. Choosing the wrong chart type obscures the relationship you're trying to communicate.",
+        demoKey: "chart-type-selection"
+      },
+      {
+        name: "Color Encoding Scales",
+        description:
+          "Use categorical palettes for unrelated groups, sequential palettes for ordered data, and diverging palettes for data with a meaningful midpoint. Mismatching scale type to data type misleads readers.",
+        demoKey: "color-encoding-scales"
+      },
+      {
+        name: "Data–Ink Ratio",
+        description:
+          "Edward Tufte's data-ink ratio: maximize the share of ink devoted to data. Heavy gridlines, background fills, decorative borders, and drop shadows are non-data ink that competes with the signal.",
+        demoKey: "data-ink-ratio"
+      },
+      {
+        name: "Axis & Label Clarity",
+        description:
+          "A truncated y-axis can make a 10% difference look like 300%. Always include a unit label, start at zero for bar charts, and only truncate when the context is unambiguous (e.g. stock prices).",
+        demoKey: "axis-label-clarity"
+      },
+      {
+        name: "Chart Accessibility",
+        description:
+          "About 8% of males have color vision deficiency. Use redundant encoding — color plus labels, patterns, or opacity variation — so charts remain readable without relying on hue alone.",
+        demoKey: "chart-accessibility"
+      },
+      {
+        name: "Aggregation Level",
+        description:
+          "The same data looks volatile at daily granularity, trending at weekly, and smooth at monthly. Choosing the right time grain is a design decision — coarser grains tell cleaner stories but hide variability that may matter.",
+        demoKey: "aggregation-level"
+      },
+      {
+        name: "Annotation & Direct Labeling",
+        description:
+          "Tooltips minimise clutter but require interaction. Direct labels make values scannable at a glance. Callout annotations focus attention on a single insight. Match your strategy to how and where the chart will be read.",
+        demoKey: "annotation-labeling"
+      },
+      {
+        name: "Aspect Ratio",
+        description:
+          "A tall, narrow chart makes the same trend look dramatic; a wide, flat chart makes it look negligible. Aspect ratio is a silent argument — be deliberate about the impression your proportions create.",
+        demoKey: "aspect-ratio"
       }
     ]
   },

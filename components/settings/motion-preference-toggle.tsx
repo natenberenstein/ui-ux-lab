@@ -18,7 +18,8 @@ function applyMotionPreference(next: MotionPreference) {
 }
 
 export function MotionPreferenceToggle() {
-  const [motionPreference, setMotionPreference] = useState<MotionPreference>("default");
+  const [motionPreference, setMotionPreference] =
+    useState<MotionPreference>("default");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -30,7 +31,8 @@ export function MotionPreferenceToggle() {
   }, []);
 
   function toggleMotionPreference() {
-    const next: MotionPreference = motionPreference === "default" ? "reduced" : "default";
+    const next: MotionPreference =
+      motionPreference === "default" ? "reduced" : "default";
     setMotionPreference(next);
     applyMotionPreference(next);
   }
@@ -52,7 +54,11 @@ export function MotionPreferenceToggle() {
         aria-label={reduced ? "Switch to standard motion" : "Reduce motion"}
         title={reduced ? "Switch to standard motion" : "Reduce motion"}
       >
-        {reduced ? <Gauge className="h-4 w-4" /> : <Waves className="h-4 w-4" />}
+        {reduced ? (
+          <Gauge className="h-4 w-4" />
+        ) : (
+          <Waves className="h-4 w-4" />
+        )}
       </Button>
     </div>
   );

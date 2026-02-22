@@ -5,7 +5,13 @@ import { useState } from "react";
 import { Check, MousePointerClick, RotateCcw } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type CheckCategory = "planning" | "visual" | "interaction" | "qa";
 
@@ -18,8 +24,14 @@ type CheckItem = {
 
 const categoryMeta: Record<CheckCategory, { title: string; color: string }> = {
   planning: { title: "Planning", color: "text-blue-600 dark:text-blue-400" },
-  visual: { title: "Visual Design", color: "text-amber-600 dark:text-amber-400" },
-  interaction: { title: "Interaction", color: "text-violet-600 dark:text-violet-400" },
+  visual: {
+    title: "Visual Design",
+    color: "text-amber-600 dark:text-amber-400",
+  },
+  interaction: {
+    title: "Interaction",
+    color: "text-violet-600 dark:text-violet-400",
+  },
   qa: { title: "QA & Polish", color: "text-emerald-600 dark:text-emerald-400" },
 };
 
@@ -27,25 +39,29 @@ const checklistItems: CheckItem[] = [
   // Planning
   {
     label: "Pick a style based on product context, not trend pressure.",
-    description: "Users expect interfaces to match the domain — a banking app should feel different from a social platform.",
+    description:
+      "Users expect interfaces to match the domain — a banking app should feel different from a social platform.",
     relatedLaw: "Jakob's Law",
     category: "planning",
   },
   {
     label: "Define hierarchy first: title, supporting text, then actions.",
-    description: "Clear information order lets users find what matters in under 3 seconds.",
+    description:
+      "Clear information order lets users find what matters in under 3 seconds.",
     relatedLaw: "Serial Position Effect",
     category: "planning",
   },
   {
     label: "Map user flows before building screens.",
-    description: "Understanding task sequences prevents dead-ends and unnecessary navigation.",
+    description:
+      "Understanding task sequences prevents dead-ends and unnecessary navigation.",
     relatedLaw: "Zeigarnik Effect",
     category: "planning",
   },
   {
     label: "Identify the core 20% of features that serve 80% of users.",
-    description: "Focus development effort on the interactions that matter most.",
+    description:
+      "Focus development effort on the interactions that matter most.",
     relatedLaw: "Pareto Principle",
     category: "planning",
   },
@@ -58,44 +74,51 @@ const checklistItems: CheckItem[] = [
   },
   {
     label: "Apply a consistent type scale with clear size steps.",
-    description: "Typography hierarchy is the fastest way to communicate importance.",
+    description:
+      "Typography hierarchy is the fastest way to communicate importance.",
     relatedLaw: "Similarity",
     category: "visual",
   },
   {
     label: "Ensure interactive elements look clickable before interaction.",
-    description: "Buttons should look pressable; links should be distinguishable from text.",
+    description:
+      "Buttons should look pressable; links should be distinguishable from text.",
     relatedLaw: "Fitts's Law",
     category: "visual",
   },
   {
     label: "Invest in aesthetic polish — it increases perceived usability.",
-    description: "Users are more forgiving of minor issues in beautiful interfaces.",
+    description:
+      "Users are more forgiving of minor issues in beautiful interfaces.",
     relatedLaw: "Aesthetic-Usability Effect",
     category: "visual",
   },
   // Interaction
   {
     label: "Add visible state feedback for hover, active, and focus.",
-    description: "Every action should produce a visible response so users never wonder if it registered.",
+    description:
+      "Every action should produce a visible response so users never wonder if it registered.",
     relatedLaw: "Doherty Threshold",
     category: "interaction",
   },
   {
     label: "Keep system response time under 400ms for direct actions.",
-    description: "Fast feedback maintains the feeling of direct manipulation and flow.",
+    description:
+      "Fast feedback maintains the feeling of direct manipulation and flow.",
     relatedLaw: "Doherty Threshold",
     category: "interaction",
   },
   {
     label: "Accept flexible input formats where possible.",
-    description: "Be liberal in what you accept — reduce friction from formatting requirements.",
+    description:
+      "Be liberal in what you accept — reduce friction from formatting requirements.",
     relatedLaw: "Postel's Law",
     category: "interaction",
   },
   {
     label: "Use progressive disclosure for complex features.",
-    description: "Show only what is needed at each step to reduce decision overhead.",
+    description:
+      "Show only what is needed at each step to reduce decision overhead.",
     relatedLaw: "Hick's Law",
     category: "interaction",
   },
@@ -108,13 +131,15 @@ const checklistItems: CheckItem[] = [
   },
   {
     label: "Review each screen for cognitive load and copy length.",
-    description: "Chunked, concise content improves comprehension and reduces bounce.",
+    description:
+      "Chunked, concise content improves comprehension and reduces bounce.",
     relatedLaw: "Miller's Law",
     category: "qa",
   },
   {
     label: "Test placement of first and last items in lists.",
-    description: "Users remember beginnings and endings — put critical content there.",
+    description:
+      "Users remember beginnings and endings — put critical content there.",
     relatedLaw: "Serial Position Effect",
     category: "qa",
   },
@@ -135,7 +160,10 @@ function itemsByCategory(cat: CheckCategory) {
 }
 
 function toAnchorId(value: string) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 export function ImplementationChecklist({ compact }: { compact?: boolean }) {
@@ -247,7 +275,9 @@ export function ImplementationChecklist({ compact }: { compact?: boolean }) {
           const items = itemsByCategory(cat);
           return (
             <div key={cat}>
-              <h3 className={`mb-3 text-sm font-semibold uppercase tracking-wide ${meta.color}`}>
+              <h3
+                className={`mb-3 text-sm font-semibold uppercase tracking-wide ${meta.color}`}
+              >
                 {meta.title}
               </h3>
               <ul className="grid gap-2.5 sm:grid-cols-2">
@@ -266,7 +296,9 @@ export function ImplementationChecklist({ compact }: { compact?: boolean }) {
                       }`}
                       aria-label={`Mark "${label}" as ${checked.has(index) ? "incomplete" : "complete"}`}
                     >
-                      {checked.has(index) && <Check className="feedback-check h-3 w-3" />}
+                      {checked.has(index) && (
+                        <Check className="feedback-check h-3 w-3" />
+                      )}
                     </button>
                     <div className="min-w-0 flex-1 space-y-1">
                       <span

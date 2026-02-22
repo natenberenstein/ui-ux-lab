@@ -8,10 +8,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "UI/UX Style Lab",
-  description: "A Next.js + shadcn/ui demo of design styles and practical UI/UX principles"
+  description:
+    "A Next.js + shadcn/ui demo of design styles and practical UI/UX principles",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -30,7 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 const style = localStorage.getItem("designStyle");
                 if (style) document.body.classList.add(style);
               } catch {}
-            })();`
+            })();`,
           }}
         />
       </head>

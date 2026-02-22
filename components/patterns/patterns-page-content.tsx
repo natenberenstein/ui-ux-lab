@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
   patternTopics,
   categoryLabels,
-  categoryPaths
+  categoryPaths,
 } from "@/components/patterns/patterns-data";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -23,7 +23,7 @@ export function PatternsPageContent() {
             href="/"
             className={buttonVariants({
               variant: "outline",
-              className: "demo-button gap-2"
+              className: "demo-button gap-2",
             })}
           >
             <ArrowLeft className="h-4 w-4" />
@@ -45,10 +45,7 @@ export function PatternsPageContent() {
           {patternTopics.map((topic) => {
             const Icon = topic.icon;
             return (
-              <Card
-                key={topic.title}
-                className="principle-card h-full"
-              >
+              <Card key={topic.title} className="principle-card h-full">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-3 text-xl">
                     <span className="icon-chip" aria-hidden>
@@ -61,11 +58,16 @@ export function PatternsPageContent() {
                   </p>
                 </CardHeader>
                 <CardContent className="space-y-5 text-sm text-slate-700">
-                  <Badge variant="outline">{categoryLabels[topic.category]}</Badge>
+                  <Badge variant="outline">
+                    {categoryLabels[topic.category]}
+                  </Badge>
                   <p className="line-clamp-3">{topic.description}</p>
                   <Link
                     href={categoryPaths[topic.category]}
-                    className={buttonVariants({ variant: "outline", className: "demo-button gap-2" })}
+                    className={buttonVariants({
+                      variant: "outline",
+                      className: "demo-button gap-2",
+                    })}
                   >
                     Open section
                     <ArrowRight className="h-4 w-4" />

@@ -76,23 +76,41 @@ function ChartTypeSelectionDemo() {
       <ResponsiveContainer width="100%" height={120}>
         {type === "bar" ? (
           <BarChart {...commonProps}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="rgba(148,163,184,0.2)"
+            />
             <XAxis dataKey="day" {...axisProps} />
             <YAxis {...axisProps} />
             <Tooltip contentStyle={{ fontSize: 10 }} />
-            <Bar dataKey="value" fill="hsl(197,92%,37%)" radius={[2, 2, 0, 0]} />
+            <Bar
+              dataKey="value"
+              fill="hsl(197,92%,37%)"
+              radius={[2, 2, 0, 0]}
+            />
           </BarChart>
         ) : type === "line" ? (
           <LineChart {...commonProps}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="rgba(148,163,184,0.2)"
+            />
             <XAxis dataKey="day" {...axisProps} />
             <YAxis {...axisProps} />
             <Tooltip contentStyle={{ fontSize: 10 }} />
-            <Line dataKey="value" stroke="hsl(197,92%,37%)" strokeWidth={2} dot={{ r: 2 }} />
+            <Line
+              dataKey="value"
+              stroke="hsl(197,92%,37%)"
+              strokeWidth={2}
+              dot={{ r: 2 }}
+            />
           </LineChart>
         ) : (
           <AreaChart {...commonProps}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="rgba(148,163,184,0.2)"
+            />
             <XAxis dataKey="day" {...axisProps} />
             <YAxis {...axisProps} />
             <Tooltip contentStyle={{ fontSize: 10 }} />
@@ -106,7 +124,9 @@ function ChartTypeSelectionDemo() {
         )}
       </ResponsiveContainer>
 
-      <p className="text-[10px] text-slate-500 dark:text-slate-400">{descriptions[type]}</p>
+      <p className="text-[10px] text-slate-500 dark:text-slate-400">
+        {descriptions[type]}
+      </p>
     </div>
   );
 }
@@ -144,10 +164,20 @@ const divergingData = [
   { label: "ANZ", value: -4 },
 ];
 
-const categoricalColors = ["#0ea5e9", "#f59e0b", "#22c55e", "#8b5cf6", "#ef4444", "#06b6d4"];
+const categoricalColors = [
+  "#0ea5e9",
+  "#f59e0b",
+  "#22c55e",
+  "#8b5cf6",
+  "#ef4444",
+  "#06b6d4",
+];
 
 function buildSequential(count: number) {
-  return Array.from({ length: count }, (_, i) => `hsl(197,82%,${28 + i * 10}%)`);
+  return Array.from(
+    { length: count },
+    (_, i) => `hsl(197,82%,${28 + i * 10}%)`,
+  );
 }
 
 function getDivergingColor(value: number): string {
@@ -164,9 +194,12 @@ const paletteData: Record<PaletteType, { label: string; value: number }[]> = {
 };
 
 const paletteDescriptions: Record<PaletteType, string> = {
-  categorical: "Product sales — unrelated categories use distinct hues so each item is independently identifiable.",
-  sequential: "Support tickets by hour — ordered data uses light→dark to encode increasing magnitude.",
-  diverging: "Revenue vs. target by region — positive (blue) and negative (red) delta from goal, centered on zero.",
+  categorical:
+    "Product sales — unrelated categories use distinct hues so each item is independently identifiable.",
+  sequential:
+    "Support tickets by hour — ordered data uses light→dark to encode increasing magnitude.",
+  diverging:
+    "Revenue vs. target by region — positive (blue) and negative (red) delta from goal, centered on zero.",
 };
 
 function ColorEncodingScalesDemo() {
@@ -174,7 +207,8 @@ function ColorEncodingScalesDemo() {
   const data = paletteData[palette];
 
   function getColor(index: number, value: number): string {
-    if (palette === "categorical") return categoricalColors[index % categoricalColors.length];
+    if (palette === "categorical")
+      return categoricalColors[index % categoricalColors.length];
     if (palette === "sequential") return buildSequential(data.length)[index];
     return getDivergingColor(value);
   }
@@ -182,26 +216,38 @@ function ColorEncodingScalesDemo() {
   return (
     <div className="principle-demo space-y-2">
       <div className="flex gap-1.5 flex-wrap">
-        {(["categorical", "sequential", "diverging"] as PaletteType[]).map((p) => (
-          <button
-            key={p}
-            type="button"
-            onClick={() => setPalette(p)}
-            className={`rounded border px-2 py-0.5 text-[10px] font-medium transition ${
-              palette === p
-                ? "border-primary/40 bg-primary/10 text-primary"
-                : "border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300"
-            }`}
-          >
-            {p.charAt(0).toUpperCase() + p.slice(1)}
-          </button>
-        ))}
+        {(["categorical", "sequential", "diverging"] as PaletteType[]).map(
+          (p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setPalette(p)}
+              className={`rounded border px-2 py-0.5 text-[10px] font-medium transition ${
+                palette === p
+                  ? "border-primary/40 bg-primary/10 text-primary"
+                  : "border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300"
+              }`}
+            >
+              {p.charAt(0).toUpperCase() + p.slice(1)}
+            </button>
+          ),
+        )}
       </div>
 
       <ResponsiveContainer width="100%" height={120}>
-        <BarChart data={data} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
-          <XAxis dataKey="label" tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" />
-          <YAxis tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" />
+        <BarChart
+          data={data}
+          margin={{ top: 4, right: 4, left: -20, bottom: 0 }}
+        >
+          <XAxis
+            dataKey="label"
+            tick={{ fontSize: 9, fill: "currentColor" }}
+            stroke="transparent"
+          />
+          <YAxis
+            tick={{ fontSize: 9, fill: "currentColor" }}
+            stroke="transparent"
+          />
           {palette === "diverging" && (
             <ReferenceLine y={0} stroke="rgba(148,163,184,0.6)" />
           )}
@@ -214,7 +260,9 @@ function ColorEncodingScalesDemo() {
         </BarChart>
       </ResponsiveContainer>
 
-      <p className="text-[10px] text-slate-500 dark:text-slate-400">{paletteDescriptions[palette]}</p>
+      <p className="text-[10px] text-slate-500 dark:text-slate-400">
+        {paletteDescriptions[palette]}
+      </p>
     </div>
   );
 }
@@ -268,26 +316,48 @@ function DataInkRatioDemo() {
         className="rounded transition-all duration-300"
         style={{
           background: junk.has("fill") ? "#f8fafc" : "transparent",
-          border: junk.has("border") ? "1.5px solid #cbd5e1" : "1.5px solid transparent",
+          border: junk.has("border")
+            ? "1.5px solid #cbd5e1"
+            : "1.5px solid transparent",
           boxShadow: junk.has("shadow") ? "0 2px 8px rgba(0,0,0,0.12)" : "none",
           padding: "4px",
         }}
       >
         <ResponsiveContainer width="100%" height={100}>
-          <BarChart data={weeklyData} margin={{ top: 2, right: 2, left: -24, bottom: 0 }}>
+          <BarChart
+            data={weeklyData}
+            margin={{ top: 2, right: 2, left: -24, bottom: 0 }}
+          >
             {junk.has("gridlines") && (
-              <CartesianGrid strokeDasharray="2 2" stroke="rgba(148,163,184,0.5)" strokeWidth={1.5} />
+              <CartesianGrid
+                strokeDasharray="2 2"
+                stroke="rgba(148,163,184,0.5)"
+                strokeWidth={1.5}
+              />
             )}
-            <XAxis dataKey="day" tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" />
-            <YAxis tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" />
-            <Bar dataKey="value" fill="hsl(197,92%,37%)" radius={[2, 2, 0, 0]} />
+            <XAxis
+              dataKey="day"
+              tick={{ fontSize: 9, fill: "currentColor" }}
+              stroke="transparent"
+            />
+            <YAxis
+              tick={{ fontSize: 9, fill: "currentColor" }}
+              stroke="transparent"
+            />
+            <Bar
+              dataKey="value"
+              fill="hsl(197,92%,37%)"
+              radius={[2, 2, 0, 0]}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       <p className="text-[10px] text-slate-500 dark:text-slate-400">
         Data-ink ratio:{" "}
-        <span className={`font-semibold ${dataInkPercent >= 75 ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"}`}>
+        <span
+          className={`font-semibold ${dataInkPercent >= 75 ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"}`}
+        >
           {dataInkPercent}%
         </span>
         {junk.size === 0
@@ -341,14 +411,24 @@ function AxisLabelClarityDemo() {
 
       <div className="relative">
         {!misleading && (
-          <p className="absolute right-0 top-0 text-[8px] text-slate-400">Revenue (USD)</p>
+          <p className="absolute right-0 top-0 text-[8px] text-slate-400">
+            Revenue (USD)
+          </p>
         )}
         <ResponsiveContainer width="100%" height={120}>
           <BarChart
             data={honestData}
-            margin={{ top: 10, right: 4, left: misleading ? -10 : -4, bottom: 0 }}
+            margin={{
+              top: 10,
+              right: 4,
+              left: misleading ? -10 : -4,
+              bottom: 0,
+            }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="rgba(148,163,184,0.2)"
+            />
             <XAxis
               dataKey="month"
               tick={{ fontSize: 9, fill: "currentColor" }}
@@ -356,7 +436,9 @@ function AxisLabelClarityDemo() {
             />
             <YAxis
               domain={misleading ? [17000, 30000] : [0, 35000]}
-              tickFormatter={(v) => misleading ? v.toLocaleString() : `$${(v / 1000).toFixed(0)}k`}
+              tickFormatter={(v) =>
+                misleading ? v.toLocaleString() : `$${(v / 1000).toFixed(0)}k`
+              }
               tick={{ fontSize: 8, fill: "currentColor" }}
               stroke="transparent"
             />
@@ -364,7 +446,11 @@ function AxisLabelClarityDemo() {
               contentStyle={{ fontSize: 10 }}
               formatter={(v) => [`$${Number(v).toLocaleString()}`, "Revenue"]}
             />
-            <Bar dataKey="revenue" fill="hsl(197,92%,37%)" radius={[2, 2, 0, 0]} />
+            <Bar
+              dataKey="revenue"
+              fill="hsl(197,92%,37%)"
+              radius={[2, 2, 0, 0]}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -397,8 +483,8 @@ function ChartAccessibilityDemo() {
 
   const modeLabels: Record<A11yMode, string> = {
     "color-only": "Color only",
-    "redundant": "Redundant encoding",
-    "deuteranopia": "Simulated deuteranopia",
+    redundant: "Redundant encoding",
+    deuteranopia: "Simulated deuteranopia",
   };
 
   const colors = mode === "deuteranopia" ? deuteranopiaColors : normalColors;
@@ -406,20 +492,22 @@ function ChartAccessibilityDemo() {
   return (
     <div className="principle-demo space-y-2">
       <div className="flex gap-1.5 flex-wrap">
-        {(["color-only", "redundant", "deuteranopia"] as A11yMode[]).map((m) => (
-          <button
-            key={m}
-            type="button"
-            onClick={() => setMode(m)}
-            className={`rounded border px-2 py-0.5 text-[10px] font-medium transition ${
-              mode === m
-                ? "border-primary/40 bg-primary/10 text-primary"
-                : "border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300"
-            }`}
-          >
-            {modeLabels[m]}
-          </button>
-        ))}
+        {(["color-only", "redundant", "deuteranopia"] as A11yMode[]).map(
+          (m) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => setMode(m)}
+              className={`rounded border px-2 py-0.5 text-[10px] font-medium transition ${
+                mode === m
+                  ? "border-primary/40 bg-primary/10 text-primary"
+                  : "border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300"
+              }`}
+            >
+              {modeLabels[m]}
+            </button>
+          ),
+        )}
       </div>
 
       <ResponsiveContainer width="100%" height={115}>
@@ -475,9 +563,12 @@ function ChartAccessibilityDemo() {
       )}
 
       <p className="text-[10px] text-slate-500 dark:text-slate-400">
-        {mode === "color-only" && "Color only: fails for ~8% of users with color vision deficiency."}
-        {mode === "redundant" && "Redundant encoding adds labels + opacity variation so meaning survives without color."}
-        {mode === "deuteranopia" && "Simulated deuteranopia: green/red confusion makes color-only charts unreadable."}
+        {mode === "color-only" &&
+          "Color only: fails for ~8% of users with color vision deficiency."}
+        {mode === "redundant" &&
+          "Redundant encoding adds labels + opacity variation so meaning survives without color."}
+        {mode === "deuteranopia" &&
+          "Simulated deuteranopia: green/red confusion makes color-only charts unreadable."}
       </p>
     </div>
   );
@@ -486,32 +577,50 @@ function ChartAccessibilityDemo() {
 // ─── 6. Aggregation Level ─────────────────────────────────────────────────────
 
 // 42 days — deterministic noise + upward trend + weekend dips
-const _noiseValues = [5,-3,8,-1,12,-8,3,-5,9,2,-7,11,-4,6,-2,13,1,-9,7,-3,10,4,-6,8,-1,5,-8,12,3,-4,9,-2,7,1,-5,11,6,-3,8,2,-7,10];
+const _noiseValues = [
+  5, -3, 8, -1, 12, -8, 3, -5, 9, 2, -7, 11, -4, 6, -2, 13, 1, -9, 7, -3, 10, 4,
+  -6, 8, -1, 5, -8, 12, 3, -4, 9, -2, 7, 1, -5, 11, 6, -3, 8, 2, -7, 10,
+];
 const rawDailyData = _noiseValues.map((n, i) => ({
   label: `D${i + 1}`,
-  value: Math.max(4, Math.round(28 + Math.floor(i / 7) * 5 + (i % 7 < 5 ? 8 : -18) + n)),
+  value: Math.max(
+    4,
+    Math.round(28 + Math.floor(i / 7) * 5 + (i % 7 < 5 ? 8 : -18) + n),
+  ),
 }));
 
 const weeklyAggData = Array.from({ length: 6 }, (_, w) => ({
   label: `Wk ${w + 1}`,
-  value: Math.round(rawDailyData.slice(w * 7, (w + 1) * 7).reduce((s, d) => s + d.value, 0) / 7),
+  value: Math.round(
+    rawDailyData.slice(w * 7, (w + 1) * 7).reduce((s, d) => s + d.value, 0) / 7,
+  ),
 }));
 
 const monthlyAggData = [0, 1, 2].map((m) => ({
   label: `Mo ${m + 1}`,
-  value: Math.round(rawDailyData.slice(m * 14, m * 14 + 14).reduce((s, d) => s + d.value, 0) / 14),
+  value: Math.round(
+    rawDailyData.slice(m * 14, m * 14 + 14).reduce((s, d) => s + d.value, 0) /
+      14,
+  ),
 }));
 
 type GrainType = "daily" | "weekly" | "monthly";
 
 function AggregationLevelDemo() {
   const [grain, setGrain] = useState<GrainType>("daily");
-  const data = grain === "daily" ? rawDailyData : grain === "weekly" ? weeklyAggData : monthlyAggData;
+  const data =
+    grain === "daily"
+      ? rawDailyData
+      : grain === "weekly"
+        ? weeklyAggData
+        : monthlyAggData;
 
   const descriptions: Record<GrainType, string> = {
     daily: "Daily (42 pts) — noisy. Weekend dips obscure the upward trend.",
-    weekly: "Weekly (6 pts) — weekend noise averages out; the upward trend emerges clearly.",
-    monthly: "Monthly (3 pts) — high-level direction is obvious, but individual spikes are gone.",
+    weekly:
+      "Weekly (6 pts) — weekend noise averages out; the upward trend emerges clearly.",
+    monthly:
+      "Monthly (3 pts) — high-level direction is obvious, but individual spikes are gone.",
   };
 
   return (
@@ -534,7 +643,10 @@ function AggregationLevelDemo() {
       </div>
 
       <ResponsiveContainer width="100%" height={115}>
-        <LineChart data={data} margin={{ top: 4, right: 4, left: -24, bottom: 0 }}>
+        <LineChart
+          data={data}
+          margin={{ top: 4, right: 4, left: -24, bottom: 0 }}
+        >
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
           <XAxis
             dataKey="label"
@@ -551,14 +663,20 @@ function AggregationLevelDemo() {
           <Line
             dataKey="value"
             stroke="hsl(197,92%,37%)"
-            strokeWidth={grain === "monthly" ? 2.5 : grain === "weekly" ? 2 : 1.5}
-            dot={grain === "daily" ? false : { r: grain === "monthly" ? 4 : 2.5 }}
+            strokeWidth={
+              grain === "monthly" ? 2.5 : grain === "weekly" ? 2 : 1.5
+            }
+            dot={
+              grain === "daily" ? false : { r: grain === "monthly" ? 4 : 2.5 }
+            }
             isAnimationActive={false}
           />
         </LineChart>
       </ResponsiveContainer>
 
-      <p className="text-[10px] text-slate-500 dark:text-slate-400">{descriptions[grain]}</p>
+      <p className="text-[10px] text-slate-500 dark:text-slate-400">
+        {descriptions[grain]}
+      </p>
     </div>
   );
 }
@@ -585,9 +703,12 @@ function AnnotationLabelingDemo() {
   };
 
   const descriptions: Record<LabelMode, string> = {
-    tooltip: "Values only accessible on hover — minimal clutter but requires interaction to read any number.",
-    direct: "Values printed on every bar — fully scannable without interaction, but dense with many series.",
-    callout: "Annotate only the thing that matters. Sparse callouts are far more memorable than labelling everything.",
+    tooltip:
+      "Values only accessible on hover — minimal clutter but requires interaction to read any number.",
+    direct:
+      "Values printed on every bar — fully scannable without interaction, but dense with many series.",
+    callout:
+      "Annotate only the thing that matters. Sparse callouts are far more memorable than labelling everything.",
   };
 
   const peakIndex = 3; // Delta = 89
@@ -614,11 +735,24 @@ function AnnotationLabelingDemo() {
       <ResponsiveContainer width="100%" height={120}>
         <BarChart
           data={annotationData}
-          margin={{ top: mode === "direct" ? 14 : mode === "callout" ? 18 : 4, right: 4, left: -20, bottom: 0 }}
+          margin={{
+            top: mode === "direct" ? 14 : mode === "callout" ? 18 : 4,
+            right: 4,
+            left: -20,
+            bottom: 0,
+          }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
-          <XAxis dataKey="product" tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" />
-          <YAxis tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" domain={[0, 105]} />
+          <XAxis
+            dataKey="product"
+            tick={{ fontSize: 9, fill: "currentColor" }}
+            stroke="transparent"
+          />
+          <YAxis
+            tick={{ fontSize: 9, fill: "currentColor" }}
+            stroke="transparent"
+            domain={[0, 105]}
+          />
           {mode !== "callout" && <Tooltip contentStyle={{ fontSize: 10 }} />}
           {mode === "callout" && (
             <ReferenceLine
@@ -637,20 +771,32 @@ function AnnotationLabelingDemo() {
             {annotationData.map((_, i) => (
               <Cell
                 key={`cell-${i}`}
-                fill={mode === "callout" && i === peakIndex ? "hsl(44,96%,52%)" : "hsl(197,92%,37%)"}
+                fill={
+                  mode === "callout" && i === peakIndex
+                    ? "hsl(44,96%,52%)"
+                    : "hsl(197,92%,37%)"
+                }
               />
             ))}
             {mode === "direct" && (
-              <LabelList dataKey="value" position="top" style={{ fontSize: 8 }} />
+              <LabelList
+                dataKey="value"
+                position="top"
+                style={{ fontSize: 8 }}
+              />
             )}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
 
       {mode === "tooltip" && (
-        <p className="text-[9px] italic text-slate-400 dark:text-slate-500">↑ Hover bars to read values</p>
+        <p className="text-[9px] italic text-slate-400 dark:text-slate-500">
+          ↑ Hover bars to read values
+        </p>
       )}
-      <p className="text-[10px] text-slate-500 dark:text-slate-400">{descriptions[mode]}</p>
+      <p className="text-[10px] text-slate-500 dark:text-slate-400">
+        {descriptions[mode]}
+      </p>
     </div>
   );
 }
@@ -679,7 +825,8 @@ function AspectRatioDemo() {
 
   const descriptions: Record<HeightMode, string> = {
     tall: "Tall — the 44→62 rise looks dramatic. Viewers perceive rapid, significant growth.",
-    standard: "Standard — slope is legible and roughly proportional to the real rate of change.",
+    standard:
+      "Standard — slope is legible and roughly proportional to the real rate of change.",
     flat: "Flat — the same rise looks negligible. Viewers may perceive a stable plateau.",
   };
 
@@ -707,10 +854,24 @@ function AspectRatioDemo() {
         style={{ height: chartHeights[heightMode] }}
       >
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={trendData} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
-            <XAxis dataKey="month" tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" />
-            <YAxis tick={{ fontSize: 9, fill: "currentColor" }} stroke="transparent" domain={[35, 70]} />
+          <LineChart
+            data={trendData}
+            margin={{ top: 4, right: 4, left: -20, bottom: 0 }}
+          >
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="rgba(148,163,184,0.2)"
+            />
+            <XAxis
+              dataKey="month"
+              tick={{ fontSize: 9, fill: "currentColor" }}
+              stroke="transparent"
+            />
+            <YAxis
+              tick={{ fontSize: 9, fill: "currentColor" }}
+              stroke="transparent"
+              domain={[35, 70]}
+            />
             <Tooltip contentStyle={{ fontSize: 10 }} />
             <Line
               dataKey="v"
@@ -723,7 +884,9 @@ function AspectRatioDemo() {
         </ResponsiveContainer>
       </div>
 
-      <p className="text-[10px] text-slate-500 dark:text-slate-400">{descriptions[heightMode]}</p>
+      <p className="text-[10px] text-slate-500 dark:text-slate-400">
+        {descriptions[heightMode]}
+      </p>
     </div>
   );
 }

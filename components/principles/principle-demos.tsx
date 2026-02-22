@@ -8,13 +8,19 @@ function VisualHierarchyDemo() {
   return (
     <div className="principle-demo space-y-1.5">
       <div className="flex items-center gap-2">
-        <span className="text-base font-bold text-slate-900">Primary heading</span>
+        <span className="text-base font-bold text-slate-900">
+          Primary heading
+        </span>
         <span className="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">
           Most important
         </span>
       </div>
-      <span className="block text-sm font-medium text-slate-700">Supporting detail</span>
-      <span className="block text-xs text-slate-500">Tertiary info — least emphasis</span>
+      <span className="block text-sm font-medium text-slate-700">
+        Supporting detail
+      </span>
+      <span className="block text-xs text-slate-500">
+        Tertiary info — least emphasis
+      </span>
     </div>
   );
 }
@@ -93,7 +99,9 @@ function AccessibilityDemo() {
         <div className="flex items-center gap-1">
           <div className="h-4 w-4 rounded bg-slate-900 dark:bg-slate-100" />
           <div className="h-4 w-4 rounded bg-white dark:bg-slate-900" />
-          <span className="text-[10px] font-medium text-emerald-600">4.5:1 ✓</span>
+          <span className="text-[10px] font-medium text-emerald-600">
+            4.5:1 ✓
+          </span>
         </div>
         <div className="flex items-center gap-1">
           <div className="h-4 w-4 rounded bg-slate-300 dark:bg-slate-600" />
@@ -111,8 +119,12 @@ function AffordanceDemo() {
     <div className="principle-demo">
       <div className="flex items-center gap-4">
         <div className="flex flex-col items-center gap-1">
-          <span className="text-xs text-slate-600 dark:text-slate-400">Submit</span>
-          <span className="text-[10px] text-slate-400">Flat text — unclear</span>
+          <span className="text-xs text-slate-600 dark:text-slate-400">
+            Submit
+          </span>
+          <span className="text-[10px] text-slate-400">
+            Flat text — unclear
+          </span>
         </div>
         <div className="text-slate-300 dark:text-slate-600">→</div>
         <div className="flex flex-col items-center gap-1">
@@ -122,7 +134,9 @@ function AffordanceDemo() {
           >
             Submit
           </button>
-          <span className="text-[10px] text-slate-400">Styled — looks clickable</span>
+          <span className="text-[10px] text-slate-400">
+            Styled — looks clickable
+          </span>
         </div>
       </div>
     </div>
@@ -135,21 +149,34 @@ function CognitiveLoadDemo() {
     <div className="principle-demo">
       <div className="grid grid-cols-2 gap-3">
         <div className="space-y-1">
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-red-500/80">Before</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wide text-red-500/80">
+            Before
+          </span>
           <div className="rounded-md border border-slate-200/80 bg-white/50 p-1.5 dark:border-slate-600/50 dark:bg-slate-800/40">
             <div className="space-y-0.5">
               {[1, 2, 3, 4].map((n) => (
-                <div key={n} className="h-1 rounded-full bg-slate-300/80 dark:bg-slate-600/70" style={{ width: `${90 - n * 8}%` }} />
+                <div
+                  key={n}
+                  className="h-1 rounded-full bg-slate-300/80 dark:bg-slate-600/70"
+                  style={{ width: `${90 - n * 8}%` }}
+                />
               ))}
             </div>
           </div>
         </div>
         <div className="space-y-1">
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-emerald-600/80">After</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wide text-emerald-600/80">
+            After
+          </span>
           <div className="space-y-1">
             {["Name", "Role", "Team"].map((label) => (
-              <div key={label} className="flex items-center gap-1.5 rounded-md border border-slate-200/80 bg-white/50 px-1.5 py-0.5 dark:border-slate-600/50 dark:bg-slate-800/40">
-                <span className="text-[9px] font-semibold text-primary">{label}</span>
+              <div
+                key={label}
+                className="flex items-center gap-1.5 rounded-md border border-slate-200/80 bg-white/50 px-1.5 py-0.5 dark:border-slate-600/50 dark:bg-slate-800/40"
+              >
+                <span className="text-[9px] font-semibold text-primary">
+                  {label}
+                </span>
                 <div className="h-1 flex-1 rounded-full bg-slate-200 dark:bg-slate-600" />
               </div>
             ))}
@@ -174,18 +201,22 @@ function WayfindingDemo() {
                   i === 1
                     ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
                     : i === 0
-                    ? "bg-primary/20 text-primary"
-                    : "border border-slate-300 bg-white text-slate-400 dark:border-slate-600 dark:bg-slate-800"
+                      ? "bg-primary/20 text-primary"
+                      : "border border-slate-300 bg-white text-slate-400 dark:border-slate-600 dark:bg-slate-800"
                 }`}
               >
                 {i + 1}
               </div>
-              <span className={`text-[9px] ${i === 1 ? "font-semibold text-primary" : "text-slate-400"}`}>
+              <span
+                className={`text-[9px] ${i === 1 ? "font-semibold text-primary" : "text-slate-400"}`}
+              >
                 {label}
               </span>
             </div>
             {i < steps.length - 1 && (
-              <div className={`mx-1.5 h-0.5 w-6 rounded-full ${i === 0 ? "bg-primary/40" : "bg-slate-200 dark:bg-slate-700"}`} />
+              <div
+                className={`mx-1.5 h-0.5 w-6 rounded-full ${i === 0 ? "bg-primary/40" : "bg-slate-200 dark:bg-slate-700"}`}
+              />
             )}
           </div>
         ))}
@@ -199,13 +230,17 @@ function GoalClarityDemo() {
   return (
     <div className="principle-demo space-y-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Progress</span>
+        <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">
+          Progress
+        </span>
         <span className="text-[10px] text-slate-500">3 of 4 complete</span>
       </div>
       <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
         <div className="h-full w-3/4 rounded-full bg-primary transition-all" />
       </div>
-      <p className="text-[10px] text-slate-500">Clear outcome — users see exactly where they stand</p>
+      <p className="text-[10px] text-slate-500">
+        Clear outcome — users see exactly where they stand
+      </p>
     </div>
   );
 }
@@ -213,11 +248,11 @@ function GoalClarityDemo() {
 /* ── Export map keyed by principle title ── */
 export const principleDemos: Record<string, () => React.JSX.Element> = {
   "Visual Hierarchy": VisualHierarchyDemo,
-  "Consistency": ConsistencyDemo,
-  "Feedback": FeedbackDemo,
-  "Accessibility": AccessibilityDemo,
-  "Affordance": AffordanceDemo,
+  Consistency: ConsistencyDemo,
+  Feedback: FeedbackDemo,
+  Accessibility: AccessibilityDemo,
+  Affordance: AffordanceDemo,
   "Cognitive Load": CognitiveLoadDemo,
-  "Wayfinding": WayfindingDemo,
+  Wayfinding: WayfindingDemo,
   "Goal Clarity": GoalClarityDemo,
 };

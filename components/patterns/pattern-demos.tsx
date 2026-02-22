@@ -1,12 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  AlertCircle,
-  AlertTriangle,
-  CheckCircle2,
-  Info
-} from "lucide-react";
+import { AlertCircle, AlertTriangle, CheckCircle2, Info } from "lucide-react";
 import { datavizDemos } from "@/components/patterns/dataviz-demos";
 
 type DemoComponent = () => React.JSX.Element;
@@ -73,7 +68,8 @@ function PurposeDrivenMotionDemo() {
         }`}
       >
         <p className="text-[10px] text-slate-600 dark:text-slate-400">
-          This transition reveals new information, so the motion explains a state change.
+          This transition reveals new information, so the motion explains a
+          state change.
         </p>
       </div>
     </div>
@@ -84,7 +80,8 @@ function PrefersReducedMotionDemo() {
   return (
     <div className="principle-demo">
       <p className="text-[10px] text-slate-500">
-        Respect `prefers-reduced-motion`: reduce transforms and keep state changes instant.
+        Respect `prefers-reduced-motion`: reduce transforms and keep state
+        changes instant.
       </p>
       <div className="mt-2 flex items-center gap-2">
         <div className="h-2 w-2 rounded-full bg-primary motion-safe:animate-pulse motion-reduce:animate-none" />
@@ -106,19 +103,23 @@ const paletteSteps = [
   { token: "600", lightness: 42 },
   { token: "700", lightness: 34 },
   { token: "800", lightness: 26 },
-  { token: "900", lightness: 18 }
+  { token: "900", lightness: 18 },
 ];
 
 function hexToRgb(hex: string) {
   const clean = hex.replace("#", "");
-  const value = clean.length === 3
-    ? clean.split("").map((c) => c + c).join("")
-    : clean;
+  const value =
+    clean.length === 3
+      ? clean
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : clean;
   const intValue = Number.parseInt(value, 16);
   return {
     r: (intValue >> 16) & 255,
     g: (intValue >> 8) & 255,
-    b: intValue & 255
+    b: intValue & 255,
   };
 }
 
@@ -166,7 +167,7 @@ function PaletteConstructionDemo() {
             className="rounded p-1 text-center text-[9px] font-semibold"
             style={{
               backgroundColor: `hsl(${hue} 72% ${step.lightness}%)`,
-              color: step.lightness < 45 ? "#ffffff" : "#0f172a"
+              color: step.lightness < 45 ? "#ffffff" : "#0f172a",
             }}
           >
             {step.token}
@@ -186,26 +187,26 @@ function SemanticColorsDemo() {
       label: "Success",
       icon: CheckCircle2,
       className: "border-emerald-300 bg-emerald-100 text-emerald-700",
-      message: "Profile was updated successfully."
+      message: "Profile was updated successfully.",
     },
     warning: {
       label: "Warning",
       icon: AlertTriangle,
       className: "border-amber-300 bg-amber-100 text-amber-700",
-      message: "Storage is almost full."
+      message: "Storage is almost full.",
     },
     error: {
       label: "Error",
       icon: AlertCircle,
       className: "border-rose-300 bg-rose-100 text-rose-700",
-      message: "Payment failed. Try again."
+      message: "Payment failed. Try again.",
     },
     info: {
       label: "Info",
       icon: Info,
       className: "border-sky-300 bg-sky-100 text-sky-700",
-      message: "A new version is available."
-    }
+      message: "A new version is available.",
+    },
   } as const;
   const [active, setActive] = useState<keyof typeof variants>("success");
   const current = variants[active];
@@ -229,7 +230,9 @@ function SemanticColorsDemo() {
           </button>
         ))}
       </div>
-      <div className={`flex items-center gap-2 rounded-md border px-2 py-2 text-[11px] font-medium ${current.className}`}>
+      <div
+        className={`flex items-center gap-2 rounded-md border px-2 py-2 text-[11px] font-medium ${current.className}`}
+      >
         <CurrentIcon className="h-4 w-4" />
         {current.message}
       </div>
@@ -240,7 +243,10 @@ function SemanticColorsDemo() {
 function ContrastRatiosDemo() {
   const [foreground, setForeground] = useState("#0f172a");
   const [background, setBackground] = useState("#ffffff");
-  const ratio = useMemo(() => contrastRatio(foreground, background), [foreground, background]);
+  const ratio = useMemo(
+    () => contrastRatio(foreground, background),
+    [foreground, background],
+  );
   const aaNormal = ratio >= 4.5;
   const aaLarge = ratio >= 3;
   const aaaNormal = ratio >= 7;
@@ -274,17 +280,27 @@ function ContrastRatiosDemo() {
         Accessible text preview
       </div>
       <div className="flex items-center justify-between rounded bg-white/70 p-1.5 dark:bg-slate-900/60">
-        <span className="font-medium text-slate-700 dark:text-slate-200">Contrast ratio</span>
-        <span className="font-semibold text-slate-900 dark:text-slate-100">{ratio.toFixed(2)}:1</span>
+        <span className="font-medium text-slate-700 dark:text-slate-200">
+          Contrast ratio
+        </span>
+        <span className="font-semibold text-slate-900 dark:text-slate-100">
+          {ratio.toFixed(2)}:1
+        </span>
       </div>
       <div className="flex flex-wrap gap-1.5">
-        <span className={`rounded border px-1.5 py-0.5 ${aaNormal ? "border-emerald-300 bg-emerald-100 text-emerald-700" : "border-rose-300 bg-rose-100 text-rose-700"}`}>
+        <span
+          className={`rounded border px-1.5 py-0.5 ${aaNormal ? "border-emerald-300 bg-emerald-100 text-emerald-700" : "border-rose-300 bg-rose-100 text-rose-700"}`}
+        >
           WCAG AA normal {aaNormal ? "pass" : "fail"}
         </span>
-        <span className={`rounded border px-1.5 py-0.5 ${aaLarge ? "border-emerald-300 bg-emerald-100 text-emerald-700" : "border-rose-300 bg-rose-100 text-rose-700"}`}>
+        <span
+          className={`rounded border px-1.5 py-0.5 ${aaLarge ? "border-emerald-300 bg-emerald-100 text-emerald-700" : "border-rose-300 bg-rose-100 text-rose-700"}`}
+        >
           WCAG AA large {aaLarge ? "pass" : "fail"}
         </span>
-        <span className={`rounded border px-1.5 py-0.5 ${aaaNormal ? "border-emerald-300 bg-emerald-100 text-emerald-700" : "border-rose-300 bg-rose-100 text-rose-700"}`}>
+        <span
+          className={`rounded border px-1.5 py-0.5 ${aaaNormal ? "border-emerald-300 bg-emerald-100 text-emerald-700" : "border-rose-300 bg-rose-100 text-rose-700"}`}
+        >
           WCAG AAA normal {aaaNormal ? "pass" : "fail"}
         </span>
       </div>
@@ -298,7 +314,7 @@ function ColorBlindnessSimDemo() {
     Normal: baseColors,
     Protanopia: ["#a17f7f", "#c4aa66", "#8aa87f", "#6fa2b0", "#9077a8"],
     Deuteranopia: ["#9b8585", "#bfa96e", "#7ea47f", "#79a7b5", "#8f79aa"],
-    Tritanopia: ["#d45f66", "#cb9b7f", "#5dae8c", "#6f9bc8", "#9d7abf"]
+    Tritanopia: ["#d45f66", "#cb9b7f", "#5dae8c", "#6f9bc8", "#9d7abf"],
   };
   const [mode, setMode] = useState<keyof typeof mappings>("Normal");
 
@@ -342,7 +358,10 @@ function ModularTypeScalesDemo() {
   return (
     <div className="principle-demo space-y-1">
       {sizes.map((size, i) => (
-        <p key={size} className={`${size} ${i === sizes.length - 1 ? "font-semibold text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"}`}>
+        <p
+          key={size}
+          className={`${size} ${i === sizes.length - 1 ? "font-semibold text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"}`}
+        >
           Scale step {i + 1}
         </p>
       ))}
@@ -354,10 +373,12 @@ function LineHeightSpacingDemo() {
   return (
     <div className="principle-demo grid grid-cols-2 gap-2 text-[10px]">
       <p className="leading-none text-slate-600 dark:text-slate-400">
-        Tight leading can make paragraphs feel cramped and harder to scan quickly.
+        Tight leading can make paragraphs feel cramped and harder to scan
+        quickly.
       </p>
       <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-        Relaxed leading improves readability and creates comfortable reading rhythm.
+        Relaxed leading improves readability and creates comfortable reading
+        rhythm.
       </p>
     </div>
   );
@@ -367,10 +388,12 @@ function MeasureCplDemo() {
   return (
     <div className="principle-demo grid gap-2 text-[10px] md:grid-cols-2">
       <p className="max-w-[35ch] rounded border border-slate-200 bg-white/70 p-1.5 text-slate-600 dark:border-slate-600 dark:bg-slate-800/50 dark:text-slate-400">
-        Very short lines interrupt reading cadence and increase eye movement between lines.
+        Very short lines interrupt reading cadence and increase eye movement
+        between lines.
       </p>
       <p className="max-w-[65ch] rounded border border-slate-200 bg-white/70 p-1.5 text-slate-600 dark:border-slate-600 dark:bg-slate-800/50 dark:text-slate-400">
-        Around sixty-five characters per line is usually the most comfortable for body copy.
+        Around sixty-five characters per line is usually the most comfortable
+        for body copy.
       </p>
     </div>
   );
@@ -384,7 +407,7 @@ function Grid4pt8ptDemo() {
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(148,163,184,0.25) 1px, transparent 1px), linear-gradient(to bottom, rgba(148,163,184,0.25) 1px, transparent 1px)",
-          backgroundSize: "8px 8px"
+          backgroundSize: "8px 8px",
         }}
       >
         <div className="h-8 rounded bg-primary/20" />
@@ -399,7 +422,7 @@ function SpacingScaleDemo() {
     { label: "sm", size: "h-3 w-3" },
     { label: "md", size: "h-4 w-4" },
     { label: "lg", size: "h-5 w-5" },
-    { label: "xl", size: "h-6 w-6" }
+    { label: "xl", size: "h-6 w-6" },
   ];
   return (
     <div className="principle-demo">
@@ -407,7 +430,9 @@ function SpacingScaleDemo() {
         {tokens.map((token) => (
           <div key={token.label} className="text-center">
             <div className={`${token.size} mx-auto rounded bg-primary/25`} />
-            <span className="mt-1 block text-[9px] text-slate-500">{token.label}</span>
+            <span className="mt-1 block text-[9px] text-slate-500">
+              {token.label}
+            </span>
           </div>
         ))}
       </div>
@@ -420,7 +445,10 @@ function GridOverlayDemo() {
     <div className="principle-demo">
       <div className="grid grid-cols-4 gap-2">
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="h-8 rounded border border-dashed border-primary/40 bg-primary/5" />
+          <div
+            key={i}
+            className="h-8 rounded border border-dashed border-primary/40 bg-primary/5"
+          />
         ))}
       </div>
     </div>
@@ -432,7 +460,7 @@ function LayoutPrimitivesDemo() {
     { name: "Stack", rule: "Vertical flow with consistent gap" },
     { name: "Inline", rule: "Horizontal flow with wrap support" },
     { name: "Grid", rule: "Two-dimensional layout for cards" },
-    { name: "Sidebar", rule: "Asymmetric split for nav/content" }
+    { name: "Sidebar", rule: "Asymmetric split for nav/content" },
   ];
 
   return (
@@ -442,8 +470,12 @@ function LayoutPrimitivesDemo() {
           key={primitive.name}
           className="flex items-center justify-between rounded border border-slate-200 bg-white/70 px-2 py-1 dark:border-slate-600 dark:bg-slate-800/50"
         >
-          <span className="font-semibold text-slate-700 dark:text-slate-200">{primitive.name}</span>
-          <span className="text-slate-500 dark:text-slate-400">{primitive.rule}</span>
+          <span className="font-semibold text-slate-700 dark:text-slate-200">
+            {primitive.name}
+          </span>
+          <span className="text-slate-500 dark:text-slate-400">
+            {primitive.rule}
+          </span>
         </div>
       ))}
     </div>
@@ -454,7 +486,7 @@ function ResponsiveSpacingRulesDemo() {
   const rows = [
     { bp: "Mobile", section: "24px", card: "12px", gap: "8px" },
     { bp: "Tablet", section: "32px", card: "16px", gap: "12px" },
-    { bp: "Desktop", section: "48px", card: "24px", gap: "16px" }
+    { bp: "Desktop", section: "48px", card: "24px", gap: "16px" },
   ];
 
   return (
@@ -470,7 +502,9 @@ function ResponsiveSpacingRulesDemo() {
           <span className="rounded bg-slate-100 px-1 py-1 font-medium text-slate-700 dark:bg-slate-700/60 dark:text-slate-200">
             {row.bp}
           </span>
-          <span className="rounded bg-primary/10 px-1 py-1 text-primary">{row.section}</span>
+          <span className="rounded bg-primary/10 px-1 py-1 text-primary">
+            {row.section}
+          </span>
           <span className="rounded bg-emerald-100 px-1 py-1 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
             {row.card}
           </span>
@@ -488,11 +522,17 @@ function ComponentSpacingContractsDemo() {
     <div className="principle-demo grid gap-2 text-[10px] md:grid-cols-2">
       <div className="rounded border border-rose-300 bg-rose-50 p-2 text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300">
         <p className="font-semibold">Don&apos;t</p>
-        <p className="mt-1">Component adds external margin and parent also adds gap, causing double spacing.</p>
+        <p className="mt-1">
+          Component adds external margin and parent also adds gap, causing
+          double spacing.
+        </p>
       </div>
       <div className="rounded border border-emerald-300 bg-emerald-50 p-2 text-emerald-700 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:text-emerald-300">
         <p className="font-semibold">Do</p>
-        <p className="mt-1">Component owns padding only; parent layout primitive owns spacing between siblings.</p>
+        <p className="mt-1">
+          Component owns padding only; parent layout primitive owns spacing
+          between siblings.
+        </p>
       </div>
     </div>
   );
@@ -504,14 +544,20 @@ function SpacingReviewChecklistDemo() {
     "Touch targets meet at least 44x44 px",
     "Section rhythm is consistent across breakpoints",
     "Related items are grouped with stronger proximity",
-    "No double spacing between component and parent"
+    "No double spacing between component and parent",
   ];
 
   return (
     <div className="principle-demo space-y-1.5 text-[10px]">
       {checklist.map((item) => (
-        <label key={item} className="flex items-start gap-2 text-slate-600 dark:text-slate-300">
-          <input type="checkbox" className="mt-0.5 h-3 w-3 rounded border-slate-300" />
+        <label
+          key={item}
+          className="flex items-start gap-2 text-slate-600 dark:text-slate-300"
+        >
+          <input
+            type="checkbox"
+            className="mt-0.5 h-3 w-3 rounded border-slate-300"
+          />
           <span>{item}</span>
         </label>
       ))}
@@ -532,7 +578,9 @@ function ValidationPatternsDemo() {
         className="w-full rounded border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700 placeholder:text-slate-400 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300"
       />
       {value.length > 0 && (
-        <p className={`text-[10px] ${isValid ? "text-emerald-600" : "text-rose-600"}`}>
+        <p
+          className={`text-[10px] ${isValid ? "text-emerald-600" : "text-rose-600"}`}
+        >
           {isValid ? "Looks good." : "Include @ in the email address."}
         </p>
       )}
@@ -543,7 +591,10 @@ function ValidationPatternsDemo() {
 function ErrorPlacementDemo() {
   return (
     <div className="principle-demo space-y-1">
-      <label className="text-[10px] font-medium text-slate-700 dark:text-slate-300" htmlFor="demo-password">
+      <label
+        className="text-[10px] font-medium text-slate-700 dark:text-slate-300"
+        htmlFor="demo-password"
+      >
         Password
       </label>
       <input
@@ -569,7 +620,10 @@ function LabelVsPlaceholderDemo() {
         {showLabel ? "Show placeholder only" : "Show label + placeholder"}
       </button>
       {showLabel && (
-        <label className="block text-[10px] font-medium text-slate-700 dark:text-slate-300" htmlFor="demo-name">
+        <label
+          className="block text-[10px] font-medium text-slate-700 dark:text-slate-300"
+          htmlFor="demo-name"
+        >
           Full name
         </label>
       )}
@@ -588,7 +642,9 @@ function MultiStepFormsDemo() {
   return (
     <div className="principle-demo space-y-2">
       <div className="h-1.5 w-full rounded-full bg-slate-200 dark:bg-slate-700">
-        <div className={`h-full rounded-full bg-primary transition-all ${step === 1 ? "w-1/3" : step === 2 ? "w-2/3" : "w-full"}`} />
+        <div
+          className={`h-full rounded-full bg-primary transition-all ${step === 1 ? "w-1/3" : step === 2 ? "w-2/3" : "w-full"}`}
+        />
       </div>
       <p className="text-[10px] text-slate-500">Step {step} of 3</p>
       <div className="flex gap-2">
@@ -614,9 +670,16 @@ function MultiStepFormsDemo() {
 function EmptyStatesDemo() {
   return (
     <div className="principle-demo rounded-lg border border-dashed border-slate-300 text-center dark:border-slate-600">
-      <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">No projects yet</p>
-      <p className="mt-1 text-[10px] text-slate-500">Create your first project to get started.</p>
-      <button type="button" className="mt-2 rounded bg-primary/15 px-2 py-1 text-[10px] font-medium text-primary">
+      <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+        No projects yet
+      </p>
+      <p className="mt-1 text-[10px] text-slate-500">
+        Create your first project to get started.
+      </p>
+      <button
+        type="button"
+        className="mt-2 rounded bg-primary/15 px-2 py-1 text-[10px] font-medium text-primary"
+      >
         New project
       </button>
     </div>
@@ -629,7 +692,9 @@ function ErrorRecoveryDemo() {
     <div className="principle-demo space-y-2">
       {failed ? (
         <>
-          <p className="text-[10px] text-rose-600">Couldn&apos;t load data. Check your connection.</p>
+          <p className="text-[10px] text-rose-600">
+            Couldn&apos;t load data. Check your connection.
+          </p>
           <button
             type="button"
             onClick={() => setFailed(false)}
@@ -639,7 +704,9 @@ function ErrorRecoveryDemo() {
           </button>
         </>
       ) : (
-        <p className="text-[10px] text-emerald-600">Recovered. Data loaded successfully.</p>
+        <p className="text-[10px] text-emerald-600">
+          Recovered. Data loaded successfully.
+        </p>
       )}
     </div>
   );
@@ -667,7 +734,9 @@ function OptimisticUiDemo() {
     setPending(true);
     setItems((prev) => [...prev, optimistic]);
     await new Promise((resolve) => setTimeout(resolve, 500));
-    setItems((prev) => prev.map((item) => (item === optimistic ? "New task" : item)));
+    setItems((prev) =>
+      prev.map((item) => (item === optimistic ? "New task" : item)),
+    );
     setPending(false);
   }
 
@@ -677,7 +746,10 @@ function OptimisticUiDemo() {
     <div className="principle-demo space-y-2">
       <ul className="space-y-1 text-[10px] text-slate-600 dark:text-slate-400">
         {items.map((item) => (
-          <li key={item} className="rounded bg-white/70 px-1.5 py-1 dark:bg-slate-800/50">
+          <li
+            key={item}
+            className="rounded bg-white/70 px-1.5 py-1 dark:bg-slate-800/50"
+          >
             {item}
           </li>
         ))}
@@ -721,5 +793,5 @@ export const patternDemos: Record<string, DemoComponent> = {
   "error-recovery": ErrorRecoveryDemo,
   "skeleton-screens": SkeletonScreensDemo,
   "optimistic-ui": OptimisticUiDemo,
-  ...datavizDemos
+  ...datavizDemos,
 };

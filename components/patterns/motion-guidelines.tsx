@@ -6,30 +6,46 @@ const easingRows = [
   {
     curve: "linear",
     useCase: "Progress indicators, constant movement",
-    notes: "Use sparingly for UI transitions; can feel mechanical."
+    notes: "Use sparingly for UI transitions; can feel mechanical.",
   },
   {
     curve: "ease-out",
     useCase: "Entrances, hover/focus feedback",
-    notes: "Feels responsive because it settles quickly."
+    notes: "Feels responsive because it settles quickly.",
   },
   {
     curve: "ease-in",
     useCase: "Exits, dismissals",
-    notes: "Signals acceleration away from the user."
+    notes: "Signals acceleration away from the user.",
   },
   {
     curve: "ease-in-out",
     useCase: "State changes between equivalent surfaces",
-    notes: "Balanced motion when neither direction dominates."
-  }
+    notes: "Balanced motion when neither direction dominates.",
+  },
 ];
 
 const durationRows = [
-  { interaction: "Tap / hover / focus feedback", duration: "100-180ms", rationale: "Must feel immediate." },
-  { interaction: "Element enter/exit", duration: "180-280ms", rationale: "Enough time to communicate direction." },
-  { interaction: "Panel/modal transition", duration: "240-360ms", rationale: "Supports spatial comprehension." },
-  { interaction: "Page/route transition", duration: "320-500ms", rationale: "Longer movement needs clearer pacing." }
+  {
+    interaction: "Tap / hover / focus feedback",
+    duration: "100-180ms",
+    rationale: "Must feel immediate.",
+  },
+  {
+    interaction: "Element enter/exit",
+    duration: "180-280ms",
+    rationale: "Enough time to communicate direction.",
+  },
+  {
+    interaction: "Panel/modal transition",
+    duration: "240-360ms",
+    rationale: "Supports spatial comprehension.",
+  },
+  {
+    interaction: "Page/route transition",
+    duration: "320-500ms",
+    rationale: "Longer movement needs clearer pacing.",
+  },
 ];
 
 const motionChecklist = [
@@ -38,27 +54,27 @@ const motionChecklist = [
   "Matches duration to distance and interaction priority.",
   "Supports interruption; users can click before animation ends.",
   "Respects prefers-reduced-motion and removes non-essential movement.",
-  "Preserves context by animating position/opacity before scale-heavy effects."
+  "Preserves context by animating position/opacity before scale-heavy effects.",
 ];
 
 const avoidPatterns = [
   "Looping decorative animation with no user value.",
   "Competing animations in the same viewport.",
   "Long delays before controls become interactive.",
-  "Relying on motion alone to communicate a critical state."
+  "Relying on motion alone to communicate a critical state.",
 ];
 
 const easingOptions = [
   { label: "Ease-out (recommended)", value: "cubic-bezier(0.22, 1, 0.36, 1)" },
   { label: "Ease-in-out", value: "ease-in-out" },
   { label: "Linear", value: "linear" },
-  { label: "Ease-in", value: "ease-in" }
+  { label: "Ease-in", value: "ease-in" },
 ];
 
 const presets = [
   { label: "Micro", duration: 140, distance: 20, delay: 0 },
   { label: "Transition", duration: 280, distance: 90, delay: 0 },
-  { label: "Page", duration: 460, distance: 140, delay: 60 }
+  { label: "Page", duration: 460, distance: 140, delay: 60 },
 ];
 
 type MotionMode = "enter" | "exit" | "scale-blur";
@@ -80,7 +96,7 @@ function MotionPreview({
   durationMs,
   delayMs,
   distancePx,
-  withOpacity
+  withOpacity,
 }: MotionPreviewProps) {
   const [active, setActive] = useState(false);
 
@@ -106,13 +122,16 @@ function MotionPreview({
   }, [mode, replayKey]);
 
   const transform = (() => {
-    if (mode === "enter") return active ? "translateX(0px)" : `translateX(-${distancePx}px)`;
-    if (mode === "exit") return active ? "translateX(0px)" : `translateX(${distancePx}px)`;
+    if (mode === "enter")
+      return active ? "translateX(0px)" : `translateX(-${distancePx}px)`;
+    if (mode === "exit")
+      return active ? "translateX(0px)" : `translateX(${distancePx}px)`;
     return active ? "translateY(0px) scale(1)" : "translateY(10px) scale(0.86)";
   })();
 
   const opacity = withOpacity ? (active ? 1 : 0) : 1;
-  const filter = mode === "scale-blur" ? (active ? "blur(0px)" : "blur(6px)") : "none";
+  const filter =
+    mode === "scale-blur" ? (active ? "blur(0px)" : "blur(6px)") : "none";
 
   return (
     <div className="relative h-28 overflow-hidden rounded-lg border border-slate-200 bg-white/70 p-3 dark:border-slate-600 dark:bg-slate-800/50">
@@ -125,10 +144,15 @@ function MotionPreview({
           transform,
           opacity,
           filter,
-          transitionProperty: mode === "scale-blur" ? "transform, opacity, filter" : withOpacity ? "transform, opacity" : "transform",
+          transitionProperty:
+            mode === "scale-blur"
+              ? "transform, opacity, filter"
+              : withOpacity
+                ? "transform, opacity"
+                : "transform",
           transitionDuration: `${durationMs}ms`,
           transitionTimingFunction: easing,
-          transitionDelay: `${delayMs}ms`
+          transitionDelay: `${delayMs}ms`,
         }}
       />
       <div className="absolute bottom-2 right-3 text-[10px] text-slate-500 dark:text-slate-400">
@@ -159,16 +183,24 @@ export function MotionGuidelines() {
         ? `.motion-enter {
   transform: translateX(-${effectiveDistance}px);
   opacity: ${withOpacity ? "0" : "1"};
-  transition: transform ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms${withOpacity ? `,
-              opacity ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms` : ""};
+  transition: transform ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms${
+    withOpacity
+      ? `,
+              opacity ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms`
+      : ""
+  };
 }
 .motion-enter-active { transform: translateX(0); opacity: 1; }`
         : mode === "exit"
           ? `.motion-exit {
   transform: translateX(0);
   opacity: 1;
-  transition: transform ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms${withOpacity ? `,
-              opacity ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms` : ""};
+  transition: transform ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms${
+    withOpacity
+      ? `,
+              opacity ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms`
+      : ""
+  };
 }
 .motion-exit-active { transform: translateX(${effectiveDistance}px); opacity: ${withOpacity ? "0" : "1"}; }`
           : `.motion-scale-enter {
@@ -177,15 +209,26 @@ export function MotionGuidelines() {
   opacity: ${withOpacity ? "0" : "1"};
   transition:
     transform ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms,
-    filter ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms${withOpacity ? `,
-    opacity ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms` : ""};
+    filter ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms${
+      withOpacity
+        ? `,
+    opacity ${effectiveDuration}ms ${effectiveEasing} ${effectiveDelay}ms`
+        : ""
+    };
 }
 .motion-scale-enter-active {
   transform: translateY(0) scale(1);
   filter: blur(0);
   opacity: 1;
 }`,
-    [effectiveDelay, effectiveDistance, effectiveDuration, effectiveEasing, mode, withOpacity]
+    [
+      effectiveDelay,
+      effectiveDistance,
+      effectiveDuration,
+      effectiveEasing,
+      mode,
+      withOpacity,
+    ],
   );
 
   return (
@@ -195,8 +238,9 @@ export function MotionGuidelines() {
           Motion System Guideline
         </h4>
         <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
-          Treat motion as a communication system. Every transition should answer at least one question:
-          What changed, where it changed, and what the user should do next.
+          Treat motion as a communication system. Every transition should answer
+          at least one question: What changed, where it changed, and what the
+          user should do next.
         </p>
       </div>
 
@@ -364,10 +408,19 @@ export function MotionGuidelines() {
           </h5>
           <div className="mt-2 space-y-2">
             {easingRows.map((row) => (
-              <div key={row.curve} className="rounded-md border border-slate-200/80 bg-white/70 p-2 dark:border-slate-600/60 dark:bg-slate-900/30">
-                <p className="text-xs font-semibold text-slate-800 dark:text-slate-200">{row.curve}</p>
-                <p className="text-[11px] text-slate-600 dark:text-slate-400">Best for: {row.useCase}</p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">{row.notes}</p>
+              <div
+                key={row.curve}
+                className="rounded-md border border-slate-200/80 bg-white/70 p-2 dark:border-slate-600/60 dark:bg-slate-900/30"
+              >
+                <p className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+                  {row.curve}
+                </p>
+                <p className="text-[11px] text-slate-600 dark:text-slate-400">
+                  Best for: {row.useCase}
+                </p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  {row.notes}
+                </p>
               </div>
             ))}
           </div>
@@ -379,10 +432,19 @@ export function MotionGuidelines() {
           </h5>
           <div className="mt-2 space-y-2">
             {durationRows.map((row) => (
-              <div key={row.interaction} className="rounded-md border border-slate-200/80 bg-white/70 p-2 dark:border-slate-600/60 dark:bg-slate-900/30">
-                <p className="text-xs font-semibold text-slate-800 dark:text-slate-200">{row.interaction}</p>
-                <p className="text-[11px] text-primary">Target: {row.duration}</p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">{row.rationale}</p>
+              <div
+                key={row.interaction}
+                className="rounded-md border border-slate-200/80 bg-white/70 p-2 dark:border-slate-600/60 dark:bg-slate-900/30"
+              >
+                <p className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+                  {row.interaction}
+                </p>
+                <p className="text-[11px] text-primary">
+                  Target: {row.duration}
+                </p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  {row.rationale}
+                </p>
               </div>
             ))}
           </div>
@@ -418,7 +480,8 @@ export function MotionGuidelines() {
           Prefers Reduced Motion Implementation
         </h5>
         <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-400">
-          Keep information hierarchy intact while reducing transforms, parallax, and continuous motion.
+          Keep information hierarchy intact while reducing transforms, parallax,
+          and continuous motion.
         </p>
         <pre className="mt-2 overflow-x-auto rounded-md bg-slate-900 p-2 text-[11px] text-slate-100">
           <code>{`@media (prefers-reduced-motion: reduce) {

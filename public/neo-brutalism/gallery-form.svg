@@ -1,0 +1,18 @@
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="0" y="0" width="800" height="520" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="8" dy="8" stdDeviation="0" flood-color="#0B0B0B" flood-opacity="1" />
+    </filter>
+  </defs>
+  <rect width="800" height="520" fill="#F6F1E7" />
+  <g filter="url(#shadow)">
+    <rect x="44" y="44" width="712" height="432" rx="12" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="4" />
+  </g>
+  <rect x="88" y="102" width="280" height="26" fill="#0B0B0B" />
+  <rect x="88" y="148" width="420" height="54" rx="6" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="4" />
+  <rect x="88" y="218" width="420" height="54" rx="6" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="4" />
+  <rect x="88" y="288" width="180" height="48" rx="6" fill="#FFE700" stroke="#0B0B0B" stroke-width="4" />
+  <rect x="540" y="140" width="176" height="176" rx="8" fill="#FF5C8A" stroke="#0B0B0B" stroke-width="4" />
+  <rect x="564" y="326" width="140" height="16" fill="#0B0B0B" />
+  <rect x="564" y="350" width="110" height="12" fill="#0B0B0B" />
+</svg>

@@ -6,10 +6,17 @@ import {
   Grid3x3,
   FormInput,
   Loader2,
-  BarChart2
+  BarChart2,
 } from "lucide-react";
 
-export type PatternCategory = "motion" | "color" | "typography" | "spacing" | "forms" | "states" | "dataviz";
+export type PatternCategory =
+  | "motion"
+  | "color"
+  | "typography"
+  | "spacing"
+  | "forms"
+  | "states"
+  | "dataviz";
 
 export type SubConcept = {
   name: string;
@@ -34,7 +41,7 @@ export const categoryLabels: Record<PatternCategory, string> = {
   spacing: "Spacing",
   forms: "Forms",
   states: "States",
-  dataviz: "Data Viz"
+  dataviz: "Data Viz",
 };
 
 export const categoryOrder: PatternCategory[] = [
@@ -44,7 +51,7 @@ export const categoryOrder: PatternCategory[] = [
   "spacing",
   "forms",
   "states",
-  "dataviz"
+  "dataviz",
 ];
 
 export const categoryPaths: Record<PatternCategory, string> = {
@@ -54,7 +61,7 @@ export const categoryPaths: Record<PatternCategory, string> = {
   spacing: "/patterns/spacing",
   forms: "/patterns/forms",
   states: "/patterns/states",
-  dataviz: "/patterns/dataviz"
+  dataviz: "/patterns/dataviz",
 };
 
 export const patternTopics: PatternTopic[] = [
@@ -72,27 +79,27 @@ export const patternTopics: PatternTopic[] = [
         name: "Easing Curves",
         description:
           "Different easing functions produce dramatically different feels. Linear motion feels robotic; ease-out feels responsive; ease-in-out feels natural.",
-        demoKey: "easing-curves"
+        demoKey: "easing-curves",
       },
       {
         name: "Duration Guidelines",
         description:
           "Micro-interactions need 100–200ms, transitions 200–400ms, and page-level animations 400–600ms. Too fast feels jarring; too slow feels sluggish.",
-        demoKey: "duration-guidelines"
+        demoKey: "duration-guidelines",
       },
       {
         name: "Purpose-Driven Motion",
         description:
           "Functional animation communicates change (a notification slides in). Decorative animation adds no information (a button spins endlessly).",
-        demoKey: "purpose-driven-motion"
+        demoKey: "purpose-driven-motion",
       },
       {
         name: "Prefers Reduced Motion",
         description:
           "Some users experience motion sickness or vestibular disorders. The prefers-reduced-motion media query lets you respect their system preference.",
-        demoKey: "prefers-reduced-motion"
-      }
-    ]
+        demoKey: "prefers-reduced-motion",
+      },
+    ],
   },
   {
     title: "Color Systems & Accessibility",
@@ -108,27 +115,27 @@ export const patternTopics: PatternTopic[] = [
         name: "Palette Construction",
         description:
           "Generate a full lightness ramp from a single hue. This creates a cohesive scale from near-white to near-black that can serve as background, border, and text colors.",
-        demoKey: "palette-construction"
+        demoKey: "palette-construction",
       },
       {
         name: "Semantic Colors",
         description:
           "Success, warning, error, and info are universal status signals. Each needs a distinct hue, matching icon, and accessible contrast ratio.",
-        demoKey: "semantic-colors"
+        demoKey: "semantic-colors",
       },
       {
         name: "Contrast Ratios",
         description:
           "WCAG requires 4.5:1 for normal text and 3:1 for large text. Failing contrast makes content unreadable for millions of users.",
-        demoKey: "contrast-ratios"
+        demoKey: "contrast-ratios",
       },
       {
         name: "Color Blindness Simulation",
         description:
           "Roughly 8% of males have some form of color vision deficiency. Never rely on color alone to convey information — always pair with shape, label, or pattern.",
-        demoKey: "color-blindness-sim"
-      }
-    ]
+        demoKey: "color-blindness-sim",
+      },
+    ],
   },
   {
     title: "Typography Scale & Readability",
@@ -144,27 +151,28 @@ export const patternTopics: PatternTopic[] = [
         name: "Modular Type Scales",
         description:
           "A type scale uses a ratio (like 1.25 — the Major Third) to derive each step. This produces harmonious sizes instead of arbitrary pixel values.",
-        demoKey: "modular-type-scales"
+        demoKey: "modular-type-scales",
       },
       {
         name: "Line Height & Spacing",
         description:
           "Line height (leading) controls vertical rhythm. Too tight makes text claustrophobic; too loose disconnects lines. The sweet spot is 1.4–1.6 for body text.",
-        demoKey: "line-height-spacing"
+        demoKey: "line-height-spacing",
       },
       {
         name: "Measure (Characters Per Line)",
         description:
           "Long lines cause eye-tracking fatigue; short lines break reading flow. The ideal measure for body text is 45–75 characters (about 65ch optimal).",
-        demoKey: "measure-cpl"
-      }
-    ]
+        demoKey: "measure-cpl",
+      },
+    ],
   },
   {
     title: "Spacing & Layout Systems",
     icon: Grid3x3,
     category: "spacing",
-    oneLiner: "Consistent spacing creates visual order and reduces cognitive load.",
+    oneLiner:
+      "Consistent spacing creates visual order and reduces cognitive load.",
     description:
       "Spacing is the most underrated design tool. A disciplined spacing system (4pt or 8pt grid) eliminates arbitrary gaps, aligns elements predictably, and makes layouts feel intentional. Combined with layout primitives and responsive rules, it creates a reliable framework for page composition and implementation.",
     keyTakeaway:
@@ -174,45 +182,45 @@ export const patternTopics: PatternTopic[] = [
         name: "4pt / 8pt Grid",
         description:
           "Constraining all spacing to multiples of 4px or 8px eliminates ambiguity and creates alignment across unrelated components.",
-        demoKey: "grid-4pt-8pt"
+        demoKey: "grid-4pt-8pt",
       },
       {
         name: "Spacing Scale",
         description:
           "Like a type scale, a spacing scale provides named tokens (xs, sm, md, lg, xl) mapped to specific pixel values for consistent application.",
-        demoKey: "spacing-scale"
+        demoKey: "spacing-scale",
       },
       {
         name: "Grid Overlay",
         description:
           "Column grids and baseline grids help align elements horizontally and vertically. Overlays during development catch misalignment early.",
-        demoKey: "grid-overlay"
+        demoKey: "grid-overlay",
       },
       {
         name: "Layout Primitives",
         description:
           "Reusable patterns like Stack, Inline, Grid, and Sidebar prevent one-off layout decisions and make component composition predictable.",
-        demoKey: "layout-primitives"
+        demoKey: "layout-primitives",
       },
       {
         name: "Responsive Spacing Rules",
         description:
           "Spacing should scale by breakpoint with clear rules for what compresses, what remains fixed, and what reflows first on smaller viewports.",
-        demoKey: "responsive-spacing-rules"
+        demoKey: "responsive-spacing-rules",
       },
       {
         name: "Component Spacing Contracts",
         description:
           "Define which component owns internal padding and which layer owns external margin to avoid spacing bugs and double-gaps.",
-        demoKey: "component-spacing-contracts"
+        demoKey: "component-spacing-contracts",
       },
       {
         name: "Spacing Review Checklist",
         description:
           "A short audit list in design and PR reviews helps teams catch inconsistent spacing, alignment drift, and touch-target issues early.",
-        demoKey: "spacing-review-checklist"
-      }
-    ]
+        demoKey: "spacing-review-checklist",
+      },
+    ],
   },
   {
     title: "Form Design Patterns",
@@ -228,33 +236,34 @@ export const patternTopics: PatternTopic[] = [
         name: "Validation Patterns",
         description:
           "Inline validation on blur gives immediate feedback. Summary validation on submit forces users to hunt for errors. Inline wins for usability.",
-        demoKey: "validation-patterns"
+        demoKey: "validation-patterns",
       },
       {
         name: "Error Placement",
         description:
           "Errors can appear below the field, above it, or as tooltips. Below-field is the most scannable; above-field risks being missed; tooltips can be clipped.",
-        demoKey: "error-placement"
+        demoKey: "error-placement",
       },
       {
         name: "Label vs Placeholder",
         description:
           "Placeholders disappear on focus, removing context. Labels persist and are accessible. Floating labels combine both but add implementation complexity.",
-        demoKey: "label-vs-placeholder"
+        demoKey: "label-vs-placeholder",
       },
       {
         name: "Multi-Step Forms",
         description:
           "Breaking long forms into steps reduces cognitive load and provides progress feedback. Each step should have a clear scope and Back/Next navigation.",
-        demoKey: "multi-step-forms"
-      }
-    ]
+        demoKey: "multi-step-forms",
+      },
+    ],
   },
   {
     title: "Data Visualization Principles",
     icon: BarChart2,
     category: "dataviz",
-    oneLiner: "Honest, accessible charts communicate data — not designer intent.",
+    oneLiner:
+      "Honest, accessible charts communicate data — not designer intent.",
     description:
       "Charts are translators between raw numbers and human understanding. Every decision — chart type, color palette, axis range, label placement — can reveal or obscure truth. Good data visualization picks the right encoding for the data type, eliminates non-data ink, labels axes clearly, and ensures the design works without color alone.",
     keyTakeaway:
@@ -264,51 +273,51 @@ export const patternTopics: PatternTopic[] = [
         name: "Chart Type Selection",
         description:
           "Bar charts compare categories; line charts show trends; area charts emphasise magnitude. Choosing the wrong chart type obscures the relationship you're trying to communicate.",
-        demoKey: "chart-type-selection"
+        demoKey: "chart-type-selection",
       },
       {
         name: "Color Encoding Scales",
         description:
           "Use categorical palettes for unrelated groups, sequential palettes for ordered data, and diverging palettes for data with a meaningful midpoint. Mismatching scale type to data type misleads readers.",
-        demoKey: "color-encoding-scales"
+        demoKey: "color-encoding-scales",
       },
       {
         name: "Data–Ink Ratio",
         description:
           "Edward Tufte's data-ink ratio: maximize the share of ink devoted to data. Heavy gridlines, background fills, decorative borders, and drop shadows are non-data ink that competes with the signal.",
-        demoKey: "data-ink-ratio"
+        demoKey: "data-ink-ratio",
       },
       {
         name: "Axis & Label Clarity",
         description:
           "A truncated y-axis can make a 10% difference look like 300%. Always include a unit label, start at zero for bar charts, and only truncate when the context is unambiguous (e.g. stock prices).",
-        demoKey: "axis-label-clarity"
+        demoKey: "axis-label-clarity",
       },
       {
         name: "Chart Accessibility",
         description:
           "About 8% of males have color vision deficiency. Use redundant encoding — color plus labels, patterns, or opacity variation — so charts remain readable without relying on hue alone.",
-        demoKey: "chart-accessibility"
+        demoKey: "chart-accessibility",
       },
       {
         name: "Aggregation Level",
         description:
           "The same data looks volatile at daily granularity, trending at weekly, and smooth at monthly. Choosing the right time grain is a design decision — coarser grains tell cleaner stories but hide variability that may matter.",
-        demoKey: "aggregation-level"
+        demoKey: "aggregation-level",
       },
       {
         name: "Annotation & Direct Labeling",
         description:
           "Tooltips minimise clutter but require interaction. Direct labels make values scannable at a glance. Callout annotations focus attention on a single insight. Match your strategy to how and where the chart will be read.",
-        demoKey: "annotation-labeling"
+        demoKey: "annotation-labeling",
       },
       {
         name: "Aspect Ratio",
         description:
           "A tall, narrow chart makes the same trend look dramatic; a wide, flat chart makes it look negligible. Aspect ratio is a silent argument — be deliberate about the impression your proportions create.",
-        demoKey: "aspect-ratio"
-      }
-    ]
+        demoKey: "aspect-ratio",
+      },
+    ],
   },
   {
     title: "Empty, Error & Loading States",
@@ -324,28 +333,28 @@ export const patternTopics: PatternTopic[] = [
         name: "Empty States",
         description:
           "A blank page with 'No items' teaches nothing. A good empty state explains why, what to do, and provides a clear CTA to get started.",
-        demoKey: "empty-states"
+        demoKey: "empty-states",
       },
       {
         name: "Error Recovery",
         description:
           "Errors should explain what happened in plain language and provide an actionable recovery path — usually a retry button that actually works.",
-        demoKey: "error-recovery"
+        demoKey: "error-recovery",
       },
       {
         name: "Skeleton Screens",
         description:
           "Skeleton screens show the shape of incoming content with pulsing placeholders. They feel faster than spinners because they set spatial expectations.",
-        demoKey: "skeleton-screens"
+        demoKey: "skeleton-screens",
       },
       {
         name: "Optimistic UI",
         description:
           "Optimistic updates assume success and show the result immediately, reverting only on failure. This makes interfaces feel instant.",
-        demoKey: "optimistic-ui"
-      }
-    ]
-  }
+        demoKey: "optimistic-ui",
+      },
+    ],
+  },
 ];
 
 export function getPatternTopicByCategory(category: PatternCategory) {

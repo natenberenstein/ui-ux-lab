@@ -29,7 +29,7 @@ export function ColorEducationLab() {
     const saturationByTone: Record<ProductTone, number> = {
       professional: 62,
       calm: 46,
-      energetic: 78
+      energetic: 78,
     };
     const primarySat = saturationByTone[tone];
     const primary = `hsl(${hue} ${primarySat}% 48%)`;
@@ -58,16 +58,19 @@ export function ColorEducationLab() {
           : "Allow broader accent usage, but keep body text and CTA contrast at AA+ targets.";
 
     const primaryLightness = surfaces === "dark-first" ? 58 : 46;
-    const primaryForeground = surfaces === "dark-first" ? "222 47% 11%" : "0 0% 98%";
+    const primaryForeground =
+      surfaces === "dark-first" ? "222 47% 11%" : "0 0% 98%";
 
     const secondaryHue = wrapHue(hue + 35);
     const secondarySat = tone === "calm" ? 28 : 42;
     const secondaryLight = surfaces === "dark-first" ? 22 : 92;
-    const secondaryForeground = surfaces === "dark-first" ? "210 33% 92%" : "220 25% 18%";
+    const secondaryForeground =
+      surfaces === "dark-first" ? "210 33% 92%" : "220 25% 18%";
 
     const accentSat = Math.max(primarySat - 20, 24);
     const accentLight = surfaces === "dark-first" ? 24 : 88;
-    const accentForeground = surfaces === "dark-first" ? "170 70% 90%" : "215 28% 16%";
+    const accentForeground =
+      surfaces === "dark-first" ? "170 70% 90%" : "215 28% 16%";
 
     return {
       primary,
@@ -86,8 +89,8 @@ export function ColorEducationLab() {
         "--secondary-foreground": secondaryForeground,
         "--accent": `${hue} ${accentSat}% ${accentLight}%`,
         "--accent-foreground": accentForeground,
-        "--ring": `${hue} ${primarySat}% ${primaryLightness}%`
-      }
+        "--ring": `${hue} ${primarySat}% ${primaryLightness}%`,
+      },
     };
   }, [baseHue, tone, surfaces, density]);
 
@@ -131,7 +134,8 @@ export function ColorEducationLab() {
           Color Learning Lab
         </h4>
         <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
-          Use this as a practical workflow: choose a hue, set product tone, validate contrast, then refine semantic states.
+          Use this as a practical workflow: choose a hue, set product tone,
+          validate contrast, then refine semantic states.
         </p>
       </div>
 
@@ -141,11 +145,21 @@ export function ColorEducationLab() {
             1) Decision Framework
           </h5>
           <ol className="mt-2 space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400">
-            <li>1. Define roles first: surface, text, primary action, semantic states.</li>
-            <li>2. Pick one base hue and build tonal steps before styling components.</li>
-            <li>3. Verify contrast for body text, labels, and action controls.</li>
+            <li>
+              1. Define roles first: surface, text, primary action, semantic
+              states.
+            </li>
+            <li>
+              2. Pick one base hue and build tonal steps before styling
+              components.
+            </li>
+            <li>
+              3. Verify contrast for body text, labels, and action controls.
+            </li>
             <li>4. Validate color-vision variants and add non-color cues.</li>
-            <li>5. Lock tokens and reuse them consistently across the product.</li>
+            <li>
+              5. Lock tokens and reuse them consistently across the product.
+            </li>
           </ol>
         </div>
 
@@ -154,10 +168,17 @@ export function ColorEducationLab() {
             2) Common Mistakes to Avoid
           </h5>
           <ul className="mt-2 space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400">
-            <li>• Choosing colors from screenshots instead of from token roles.</li>
-            <li>• Reusing brand color for both text and backgrounds without contrast checks.</li>
+            <li>
+              • Choosing colors from screenshots instead of from token roles.
+            </li>
+            <li>
+              • Reusing brand color for both text and backgrounds without
+              contrast checks.
+            </li>
             <li>• Making warning/error visually too similar.</li>
-            <li>• Assuming dark mode can be built by simply inverting light mode.</li>
+            <li>
+              • Assuming dark mode can be built by simply inverting light mode.
+            </li>
             <li>• Communicating status by color only (without icon/text).</li>
           </ul>
         </div>
@@ -168,7 +189,8 @@ export function ColorEducationLab() {
           3) Interactive Theme Coach
         </h5>
         <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">
-          Live mode: this page theme updates in real time as you change controls.
+          Live mode: this page theme updates in real time as you change
+          controls.
         </p>
 
         <div className="mt-2 grid gap-2 md:grid-cols-2">
@@ -226,29 +248,53 @@ export function ColorEducationLab() {
         </div>
 
         <div className="mt-3 grid gap-2 sm:grid-cols-3 lg:grid-cols-5">
-          <div className="rounded border border-slate-300 p-2 text-[10px]" style={{ backgroundColor: themeTokens.primarySoft }}>
+          <div
+            className="rounded border border-slate-300 p-2 text-[10px]"
+            style={{ backgroundColor: themeTokens.primarySoft }}
+          >
             <p className="font-semibold text-slate-900">Primary soft</p>
             <p className="text-slate-700">{themeTokens.primarySoft}</p>
           </div>
-          <div className="rounded border border-slate-300 p-2 text-[10px]" style={{ backgroundColor: themeTokens.primary }}>
+          <div
+            className="rounded border border-slate-300 p-2 text-[10px]"
+            style={{ backgroundColor: themeTokens.primary }}
+          >
             <p className="font-semibold text-white">Primary</p>
             <p className="text-white">{themeTokens.primary}</p>
           </div>
-          <div className="rounded border border-slate-300 p-2 text-[10px]" style={{ backgroundColor: themeTokens.primaryStrong }}>
+          <div
+            className="rounded border border-slate-300 p-2 text-[10px]"
+            style={{ backgroundColor: themeTokens.primaryStrong }}
+          >
             <p className="font-semibold text-white">Primary strong</p>
             <p className="text-white">{themeTokens.primaryStrong}</p>
           </div>
-          <div className="rounded border border-slate-300 p-2 text-[10px]" style={{ backgroundColor: themeTokens.neutralSurface }}>
+          <div
+            className="rounded border border-slate-300 p-2 text-[10px]"
+            style={{ backgroundColor: themeTokens.neutralSurface }}
+          >
             <p className="font-semibold text-slate-900">Surface neutral</p>
             <p className="text-slate-700">{themeTokens.neutralSurface}</p>
           </div>
           <div className="rounded border border-slate-300 p-2 text-[10px]">
             <p className="font-semibold text-slate-900">Semantic set</p>
             <div className="mt-1 flex gap-1">
-              <span className="h-4 w-4 rounded-full border" style={{ backgroundColor: themeTokens.success }} />
-              <span className="h-4 w-4 rounded-full border" style={{ backgroundColor: themeTokens.warning }} />
-              <span className="h-4 w-4 rounded-full border" style={{ backgroundColor: themeTokens.error }} />
-              <span className="h-4 w-4 rounded-full border" style={{ backgroundColor: themeTokens.info }} />
+              <span
+                className="h-4 w-4 rounded-full border"
+                style={{ backgroundColor: themeTokens.success }}
+              />
+              <span
+                className="h-4 w-4 rounded-full border"
+                style={{ backgroundColor: themeTokens.warning }}
+              />
+              <span
+                className="h-4 w-4 rounded-full border"
+                style={{ backgroundColor: themeTokens.error }}
+              />
+              <span
+                className="h-4 w-4 rounded-full border"
+                style={{ backgroundColor: themeTokens.info }}
+              />
             </div>
           </div>
         </div>
@@ -263,13 +309,26 @@ export function ColorEducationLab() {
           4) Resource Stack
         </h5>
         <ul className="mt-2 space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400">
-          <li>• WCAG 2.2 Contrast Understanding: https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html</li>
-          <li>• WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/</li>
-          <li>• Repo deep dive notes: `docs/02-visual-design-fundamentals/typography-and-color.md`</li>
-          <li>• Accessibility reference: `docs/07-accessibility/wcag-and-aria.md`</li>
+          <li>
+            • WCAG 2.2 Contrast Understanding:
+            https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html
+          </li>
+          <li>
+            • WebAIM Contrast Checker:
+            https://webaim.org/resources/contrastchecker/
+          </li>
+          <li>
+            • Repo deep dive notes:
+            `docs/02-visual-design-fundamentals/typography-and-color.md`
+          </li>
+          <li>
+            • Accessibility reference: `docs/07-accessibility/wcag-and-aria.md`
+          </li>
         </ul>
         <p className="mt-2 text-[11px] text-slate-500 dark:text-slate-400">
-          Next step: use the interactive demos below (palette, semantic states, contrast ratio, color blindness simulation) to validate these decisions.
+          Next step: use the interactive demos below (palette, semantic states,
+          contrast ratio, color blindness simulation) to validate these
+          decisions.
         </p>
       </div>
     </section>
